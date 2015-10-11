@@ -1,0 +1,146 @@
+- Class: meta
+  Course: PFH - Multivariate Verfahren IV
+  Lesson: Multivariate Verfahren IV
+  Author: PFH
+  Type: Standard
+  Organization: Private Hochschule Goettingen
+  Version: 0.1
+  
+# Begruessung  
+- Class: text
+  Output: Willkommen zum interaktiven R-Kurs der PFH.
+
+# Datensatz  
+- Class: text
+  Output: In der Speicheranzeige/Environment finden Sie den Datensatz "daten". Das Datenbeispiel orientiert sich an Schmidt (2010), "Training zu Entwicklung der Beschaeftigungsfaehigkeit - Evaluation eines innovativen Programms zur Unterstuetzung junger Arbeitsloser".
+    
+# Datensatz
+- Class: text
+  Output: Insgesamt wurden 90 junge Personen hinsichtlich ihrer Ansprueche an einen zukuenftigen Arbeitsplatz und ihrer Kompetenz- und Kontrollueberzeugungen befragt. Zunaechst werden die Daten genauer betrachtet, bevor eine Diskriminanzanalyse durchgefuehrt wird.
+  
+  
+# Deskriptive Auswertung
+- Class: cmd_question
+  Output: Verschaffen Sie sich einen Ueberblick ueber die Struktur der Daten. Nutzen Sie dazu den Befehl str()
+  CorrectAnswer: str(daten)
+  AnswerTests: omnitest(correctExpr="str(daten)")
+  Hint: Geben Sie folgenden Code ein str(daten)
+  
+# Deskriptive Auswertung
+- Class: cmd_question
+  Output: Fuer die folgende Analyse ist die Gruppierungsvariable "gruppe" wichtig. Lassen Sie sich die Werte dieser Variable mit Hilfe des $-Operators anzeigen.
+  CorrectAnswer: daten$gruppe
+  AnswerTests: omnitest(correctVal='daten$gruppe')
+  Hint: Geben Sie folgenden Code ein daten$gruppe
+
+
+- Class: cmd_question
+  Output: Erstellen Sie mit hilfe des Befehls table() eine Tabelle aus der die Anzahl der Probanden in den jeweiligen Massnahmen ersichtlich wird. Die Daten sind in der soeben ausgewaehlten Gruppenvariable "gruppe" abgespeichert.
+  CorrectAnswer: table(daten$gruppe)
+  AnswerTests: omnitest(correctVal='table(daten$gruppe)')
+  Hint: Geben Sie folgenden Code ein table(daten$gruppe)
+
+# Annahmen
+
+- Class: text
+  Output: Fuer die Diskriminanzanalyse soll untersucht werden, inwieweit die Variablen "zutsp_3" (Ansprueche an den Taetigkeitsspielraum), "zuanf_3" (Ansprueche an die Anforderungsvielfalt), "zutrs_3" (Ansprueche an die Transparenz) und "zuflg_3" (Ansprueche an die Lernhaltigkeit) einen Einfluss auf die Gruppenzugehoerigkeit der Individuen ausueben.
+
+# Inferenzstatistik
+- Class: cmd_question
+  Output: Zunaechst soll untersucht werden, ob die Normalverteilungsannahme fuer die Variable "zutsp_3" gerechtfertigt ist. Erstellen Sie hierzu ein Histogramm der Variable mithilfe des Befehls hist(). Setzen Sie dabei das Argument freq=FALSE.
+  CorrectAnswer: hist(daten$zutsp_3, freq=FALSE)
+  AnswerTests: omnitest(correctVal='hist(daten$zutsp_3, freq=FALSE)')
+  Hint: Geben Sie folgenden Code ein hist(daten$zutsp_3, freq=FALSE)
+
+# Datensatz
+- Class: text
+  Output: Bevor Sie dem Histogramm eine Gausssche Glockenkurve hinzufuegen, berechnen Sie als Vorbereitung den Mittelwert und die Standardabweichung der Variabe "zutsp_3".
+
+# Inferenzstatistik
+- Class: cmd_question
+  Output: Speichern Sie den Standardabweichung der Variable "zutsp_3" in der Variable "sd1" ab. Sie koennen hierfuer den Befehl sd() verwenden. 
+  CorrectAnswer: sd1 <- sd(daten$zutsp_3)
+  AnswerTests: any_of_exprs('sd1 <- sd(daten$zutsp_3)', 'sd1 = sd(daten$zutsp_3)')
+  Hint: Geben Sie folgenden Code ein sd1 <- sd(daten$zutsp_3)
+
+- Class: cmd_question
+  Output: Speichern Sie den Mittelwert der Variable "zutsp_3" in der Variable "m1" ab. Sie koennen hierfuer den Befehl mean() verwenden.
+  CorrectAnswer: m1 <- mean(daten$zutsp_3)
+  AnswerTests: any_of_exprs('m1 <- mean(daten$zutsp_3)', 'm1 = mean(daten$zutsp_3)')
+  Hint: Geben Sie folgenden Code ein m1 <- mean(daten$zutsp_3)
+  
+# Inferenzstatistik
+- Class: cmd_question
+  Output: Fuegen Sie dem Histogramm eine Gausssche Glockenkurve hinzu. Nutzen Sie dazu den Befehl curve() in Zusammenhang mit dem Befel dnorm(). Fuer dnorm() verwenden sie als Parameter x, m1 und sd1. Um die Kurve dem bestehenden Histogramm hinzuzufuegen, verwenden sie fuer die Funktion curve den zusaetzlichen Parameter add=TRUE.
+  CorrectAnswer: curve(dnorm(x, mean = m1, sd = sd1), add = TRUE)
+  AnswerTests: any_of_exprs('curve(dnorm(x, mean = m1, sd = sd1), add = TRUE)')
+  Hint: Geben Sie folgenden Code ein curve(dnorm(x, mean = m1, sd = sd1), add = TRUE)
+  
+# Inferenzstatistik  
+- Class: mult_question
+  Output: Welche der folgenden Voraussetzungen ist fuer die Diskriminanzanalyse nicht erforderlich?
+  AnswerChoices:  Die Erwartungswerte der Variablen muessen gleich sein; Die Kovarianzmatrix der Variablen muss homogen sein; Die Variablen muessen normalverteilt sein;
+  CorrectAnswer:  Die Erwartungswerte der Variablen muessen gleich sein
+  AnswerTests: omnitest(correctVal='Die Erwartungswerte der Variablen muessen gleich sein')
+  Hint: Die Erwartungswerte der Variablen muessen nicht gleich sein um eine Diskriminanzanalyse durchzufuehren.
+  
+# Fehlende Werte
+- Class: text
+  Output: Obwohl die Variable nicht einer Normalverteilung zu folgen scheint, wird im Folgenden dennoch eine Diskriminanzanalyse durchgefuehrt. Um eine Diskriminanzanalyse durchzufuehren, muss zunaechst das dazugehoerige lineare Modell aufgestellt werden. Dafuer wird zunaechst die Matrix der abhaengigen Variable erstellt.
+
+# Fehlender Werte
+- Class: cmd_question
+  Output: Fuehren Sie die abhaengigen Variablen "zutsp_3", "zuanf_3", "zutrs_3" und "zuflg_3" mit dem Befehl cbind() in einer Matrix zusammen. Speichern Sie das Ergebnis in der Variable "abhvar".
+  CorrectAnswer: abhvar <- cbind(daten$zutsp_3, daten$zuanf_3, daten$zutrs_3, daten$zuflg_3)
+  AnswerTests: any_of_exprs('abhvar <- cbind(daten$zutsp_3, daten$zuanf_3, daten$zutrs_3, daten$zuflg_3)', 'abhvar = cbind(daten$zutsp_3, daten$zuanf_3, daten$zutrs_3, daten$zuflg_3)')
+  Hint: Geben Sie folgenden Code ein abhvar <- cbind(daten$zutsp_3, daten$zuanf_3, daten$zutrs_3, daten$zuflg_3)
+
+  
+# Fehlender Werte
+- Class: cmd_question
+  Output: Stellen Sie mithilfe der Funktion lm() ein lineares Modell auf mit der abhaengigen Variablen "abhvar", sowie der Gruppierungsvariable "daten$gruppe". Speichern Sie das Ergebnis in der Variable "model".
+  CorrectAnswer: model <- lm(abhvar ~ daten$gruppe)
+  AnswerTests: any_of_exprs('model <- lm(abhvar ~ daten$gruppe)', 'model = lm(abhvar ~ daten$gruppe)')
+  Hint: Geben Sie folgenden Code ein model <- lm(abhvar ~ daten$gruppe)
+  
+# Inferenzstatistik
+- Class: cmd_question
+  Output: Berechnen Sie mit dem Befehl candisc() und der Variable "model" die lineare Diskriminanzanalyse. Speichern Sie das Ergebnis in der Variable "can".
+  CorrectAnswer: can <- candisc(model)
+  AnswerTests: any_of_exprs('can <- candisc(model)', 'can = candisc(model)')
+  Hint: Geben Sie folgenden Code ein can <- candisc(model)
+  
+# Inferenzstatistik
+- Class: cmd_question
+  Output: Lassen Sie sich das Ergebnis der Diskriminanzanalyse in der Variable "can" anzeigen.
+  CorrectAnswer: can
+  AnswerTests: omnitest(correctVal='can')
+  Hint: Geben Sie folgenden Code ein can
+  
+# Inferenzstatistik  
+- Class: mult_question
+  Output: Welche der folgenden Aussagen ist falsch?
+  AnswerChoices:  Die erste Diskriminanzfunktion hat einen Eigenwert von 0.2183; Der zweite kanonische Korrelationskoeffizient ist signifikant, da der dazugehoerige Eigenwert groesser als 0 ist; Der erste kanonische Korrelationskoeffizient ist signifikant, da der dazugehoerige p-Wert kleiner als 0.05 ist; Die erste Diskriminanzfunktion hat einen groesseren Erklaerungswert als die zweite Diskriminanzfunktion;
+  CorrectAnswer:  Der zweite kanonische Korrelationskoeffizient ist signifikant, da der dazugehoerige Eigenwert groesser als 0 ist
+  AnswerTests: omnitest(correctVal='Der zweite kanonische Korrelationskoeffizient ist signifikant, da der dazugehoerige Eigenwert groesser als 0 ist')
+  Hint: Der zweite kanonische Korrelationskoeffizient ist nicht signifikant, da der dazugehoerige p-Wert groesser als 0.05 ist
+  
+# Inferenzstatistik
+- Class: cmd_question
+  Output: Lassen Sie sich die Strukturkoeffizienten der Diskriminanzanalyse ausgeben. Geben Sie dazu den Code can$structure ein.
+  CorrectAnswer: can$structure
+  AnswerTests: omnitest(correctVal='can$structure')
+  Hint: Geben Sie folgenden Code ein can$structure
+
+
+# Inferenzstatistik  
+- Class: mult_question
+  Output: Aus den Strukturkoeffizienten wird deutlich, dass...
+  AnswerChoices:  Die Variable zutrs_3 einen Einfluss auf die zweite Diskriminanzfunktion ausuebt; Die Variable zutsp_3 einen Einfluss auf die erste Diskriminanzfunktion ausuebt; Der erste kanonische Korrelationskoeffizient signifikant ist; Der zweite kanonische Korrelationskoeffizient signifikant ist;
+  CorrectAnswer:  Die Variable zutsp_3 einen Einfluss auf die erste Diskriminanzfunktion ausuebt
+  AnswerTests: omnitest(correctVal='Die Variable zutsp_3 einen Einfluss auf die erste Diskriminanzfunktion ausuebt')
+  Hint: Aus den Strukturkoeffizienten wird deutlich, dass die Variable zutsp_3 einen Einfluss auf die erste Diskriminanzfunktion ausuebt
+
+    # Ende
+- Class: text
+  Output: In diesem Kapitel haben Sie gelernt eine Diskriminanzanalyse durchzufuehren und zu interpretieren. Sie haben dieses Kapitel nun erfolgreich abgeschlossen.

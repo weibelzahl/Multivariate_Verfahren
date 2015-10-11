@@ -1,0 +1,125 @@
+- Class: meta
+  Course: PFH
+  Lesson: Faktorenanalyse
+  Author: PFH
+  Type: Standard
+  Organization: Private Hochschule Goettingen
+  Version: 0.1
+  
+  
+# Begruessung   
+- Class: text
+  Output: "Willkommen zum interaktiven R-Kurs der PFH."
+
+# Begruessung  
+- Class: text
+  Output: "Als naechstes werden Aufgaben zum Thema: Faktorenanalyse durchgefuehrt."
+
+# Begruessung  
+- Class: text
+  Output: "Oben rechts finden Sie in der Speicheranzeige/Environment einen Datensatz. Es sind Ergebnisse zu einem Fragebogen zur Analyse des Arbeitsstils von Probanden. Der Fragebogen befasst sich mit potentiell gesundheitsgefaehrdende Verhaltensweisen im Umgang mit Anforderungen."
+
+
+# Faktorenanalyse
+
+# Sub daten.auswahl
+- Class: cmd_question
+  Output: Speichern Sie einen neuen Datensatz "daten.auswahl", in dem von dem ersten Datensatz die ersten drei Spalten ausgeschlossen werden. Dafuer koennen Sie "daten[, -(1:3)]" verwenden.
+  CorrectAnswer: daten.auswahl = daten[, -(1:3)]
+  AnswerTests: any_of_exprs('daten.auswahl = daten[, -(1:3)]', 'daten.auswahl <- daten[, -(1:3)]')
+  Hint: Die korrekte Antwort lautet "daten.auswahl <- daten[, -(1:3)]"
+
+
+# Sub daten.auswahl
+- Class: cmd_question
+  Output: Speichern Sie einen neuen Datensatz "daten.clean", in dem sie fehlende Werte (NAs) des Datensatzes "daten.auswahl" paarweise ausschliessen. Verwenden Sie dazu den Befehl na.omit().
+  CorrectAnswer: daten.clean = na.omit(daten.auswahl)
+  AnswerTests: any_of_exprs('daten.clean = na.omit(daten.auswahl)', 'daten.clean <- na.omit(daten.auswahl)')
+  Hint: Die korrekte Antwort lautet "daten.clean = na.omit(daten.auswahl)"
+
+
+# Sub daten.auswahl
+- Class: cmd_question
+  Output: Berechnen Sie die Korrelationsmatrix des Datensatzes "daten.clean"
+  CorrectAnswer: cor(daten.clean)
+  AnswerTests: omnitest(correctExpr='cor(daten.clean)', correctVal=cor(daten.clean))
+  Hint: Die korrekte Antwort lautet "cor(daten.clean)"
+
+- Class: mult_question
+  Output: Wie hoch ist die Korrelation zwischen den Variablen "will besser als andere sein" und "organisiere mein Leben" auf zwei Nachkommastellen?
+  AnswerChoices:  0.008; 0.09; 0.07; 0.19
+  CorrectAnswer:  0.09
+  AnswerTests: omnitest(correctVal='0.09')
+  Hint: Ein Hinweis "Finden Sie die Zeile 10 und lesen Sie dann den Wert in Spalte 2 ab."
+  
+
+- Class: mult_question
+  Output: Wie hoch ist die Korrelation zwischen den Variablen "organisiere mein Leben" und "organisiere mein Leben" auf zwei Nachkommastellen?
+  AnswerChoices:  -1.00; 0.09; 0.00; 1.00
+  CorrectAnswer:  1.00
+  AnswerTests: omnitest(correctVal='1.00')
+  Hint: Ein Hinweis "Eine Variable ist mit sich selbst perfekt korreliert."
+
+- Class: mult_question
+  Output: Wie hoch erwarten Sie die Korrelation zwischen der Variablen "organisiere mein Leben" und einer davon unabhaengig generierten normal verteilten Zufallsvariablen?
+  AnswerChoices:  -1; 0.5; 0; 1
+  CorrectAnswer:  0
+  AnswerTests: omnitest(correctVal='0')
+  Hint: Ein Hinweis "Unabhaengig generierten normal verteilten Zufallsvariablen sollten mit anderen Variablen unkorreliert sein."
+
+
+# Sub daten.auswahl
+- Class: cmd_question
+  Output: Laden Sie das Paket "psych"
+  CorrectAnswer: library(psych)
+  AnswerTests: any_of_exprs('library(psych)', 'library("psych")', "library('psych')")
+  Hint: Die korrekte Antwort lautet "library(psych)"
+
+# Sub daten.auswahl
+- Class: cmd_question
+  Output: Zeichnen Sie mit Hilfe der der Funktion fa.parallel einen Scree Plot.
+  CorrectAnswer: fa.parallel(daten.clean)
+  AnswerTests: omnitest(correctExpr='fa.parallel(daten.clean)')
+  Hint: Die korrekte Antwort lautet 'fa.parallel(daten.clean)'
+  
+  
+- Class: mult_question
+  Output: We viele Komponenten würden Sie auf Grund des Scree plots bevorzugen??
+  AnswerChoices:  1; 2; 4; 5; 10; 20
+  CorrectAnswer:  0
+  AnswerTests: omnitest(correctVal='4')
+  Hint: Achten Sie auf den Hinweis in der Konsole, welcher durch die die Funktion fa.parallel ausgegeben wird.
+
+
+
+
+
+# Sub daten.auswahl
+- Class: cmd_question
+  Output: Fuehren Sie eine Hauptkomponentenanalyse mit 4 Komponenten und einer Varimax Rotation durch.
+  CorrectAnswer: principal(daten.clean, rotate = "varimax", nfactors = 4)
+  AnswerTests: omnitest(correctExpr='principal(daten.clean, rotate = "varimax", nfactors = 4)')
+  Hint: Die korrekte Antwort lautet 'principal(daten.clean, rotate = "varimax", nfactors = 4)'
+
+
+
+
+- Class: mult_question
+  Output: Die Faktorenanalyse...
+  AnswerChoices:  ...reduziert die Datendimension ohne Informationen zu verlieren; ...macht bei grossen Datensaetzen keinen Sinn; ...rotiert die Daten bevor sie extrahiert werden; ...wird benutzt um den Datensatz mit moeglichst wenig Dimensionen ausreichend darzustellen
+  CorrectAnswer:  ...wird benutzt um den Datensatz mit moeglichst wenig Dimensionen ausreichend darzustellen
+  AnswerTests: omnitest(correctVal='...wird benutzt um den Datensatz mit moeglichst wenig Dimensionen ausreichend darzustellen')
+  Hint: Ein Hinweis "Bei der Faktorenanalyse soll der Datenumfang reduziert werden, ohne relevante Informationen zu verlieren"
+
+
+- Class: mult_question
+  Output: Die Korrelationsmatrix...
+  AnswerChoices:  ...ist asymmetrisch; ...auf der Diagonalen sind Nullen, ...da eine Variable nicht mit sich selbst korreliert sein kann; kann auch auf alle Werte unterhalb der Diagonalen reduziert werden ohne Informationen zu verlieren; ...ist unabhaengig von den Kovarianzen
+  CorrectAnswer:  ...kann auch auf alle Werte unterhalb der Diagonalen reduziert werden ohne Informationen zu verlieren
+  AnswerTests: omnitest(correctVal='kann auch auf alle Werte unterhalb der Diagonalen reduziert werden ohne Informationen zu verlieren')
+  Hint: Ein Hinweis "Die Korrelationsmatrix ist symmetrisch""
+
+
+# Zusammenfassung des Kapitels: 
+- Class: text
+  Output: "In diesem Kapitel haben Sie gelernt, Faktorenanalysen durchzufuehren. Sie haben begonnen Zusammenhaenge mit Korrelationsmaßen zu analysieren. Weiterhin haben Sie einen Einblick in die Hauptkomponentenanalyse bekommen und konnten Fragen zur Faktorenanalyse beantworten. Sie haben dieses Kapitel nun erfolgreich abgeschlossen." 

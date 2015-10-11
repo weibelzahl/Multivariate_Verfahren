@@ -1,0 +1,133 @@
+- Class: meta
+  Course: PFH - Multivariate Verfahren IV
+  Lesson: Multivariate Verfahren IV
+  Author: PFH
+  Type: Standard
+  Organization: Private Hochschule Goettingen
+  Version: 0.2
+  
+  
+# Begrueßung  
+- Class: text
+  Output: "Willkommen zum zehnten Kapitel des interaktiven R-Kurses der PFH: Strukturgleichungsmodelle in  R."
+
+# Begrueßung  
+- Class: text
+  Output: Oben rechts finden Sie in der Speicheranzeige/Environment einen Datensatz , welcher die Daten von 198 Teilnehmerinnen eines Forschungsprojekts enthaelt. Im Rahmen dieses Projekts wurden Dresdner Frauen im Alter von 40 bis 60 Jahren untersucht. Dabei wurde eine grosse Anzahl medizinischer wie psychologischer Risiko- und Schutzfaktoren bezueglich Herzkreislauferkrankungen erhoben. Ziel war u.a. die Suche nach Schutzfaktoren, die das kardiovaskulaere Risiko vermindern. Im vorliegenden Swirl-Kurs soll mittels Strukturgleichungsmodellen untersucht werden, inwieweit sich Belastungen im Alltag und im Beruf auf das Befinden der Frauen im mittleren Lebensalter auswirken. 
+
+# ueberpruefung des Datensatzes I
+- Class: cmd_question
+  Output: Ueberpuefen Sie mit der Funktion str(), ob der Datensatz richtig eingelesen wurde.
+  CorrectAnswer: str(daten)
+  AnswerTests: omnitest(correctExpr="str(daten)")
+  Hint: Geben Sie folgenden Code ein str(daten)
+  
+# Überprüfung des Datensatzes II
+- Class: cmd_question
+  Output: Bei der Erstellung von Strukturgleichungsmodellen bietet es sich an, mit z-standardisierten Variablen zu arbeiten. Ueberpruefen Sie mit der Funktion summary(), ob dies der Fall ist.
+  CorrectAnswer: summary(daten)
+  AnswerTests: omnitest(correctExpr = "summary(daten)")
+  Hint: Geben Sie folgenden Code ein str(daten)
+
+- Class: mult_question
+  Output: Sind die Variablen z-standardisiert?
+  AnswerChoices:  Nein - die Variable pb hat einen sehr hohen Mittelwert; Ja - der Mittelwert ist fuer alle relevanten Variablen 0; Nein - der Median ist ungleich 0; Ja - das Maximum liegt bei allen Variablen unter 5
+  CorrectAnswer:  Ja - der Mittelwert ist fuer alle relevanten Variablen 0
+  AnswerTests: omnitest(correctVal='Ja - der Mittelwert ist fuer alle relevanten Variablen 0')
+  Hint: Ueberpruefen Sie ob der Mittelwert gleich Null ist.
+  
+- Class: mult_question
+  Output: Eine Korrelation zwischen den Variablen A und B kann inhaltlich folgendermassen interpretiert werden...
+  AnswerChoices:  A ist Ursache für B; B ist Ursache für A; A und B beeinflussen sich gegenseitig; A und B werden durch die Variable C beeinflusst; Keine Antwort ist richtig; Alle Antworten sind richtig
+  CorrectAnswer:  Alle Antworten sind richtig
+  AnswerTests: omnitest(correctVal='Alle Antworten sind richtig')
+  Hint: Koennen Sie eine Antwort als eindeutig falsch indentifizieren?
+ 
+- Class: mult_question
+  Output: Was versteht man unter einem Messmodell?
+  AnswerChoices:  Die Beschreibung der Versuchsanordnung eines psychologischen Experiments; Die Darstellung der Verknuepfung zwischen latenten Variablen; Die Darstellung der Verknuepfung zwischen latenter Variable und ihren (manifesten) Indikatoren; Keine der Definition ist richtig
+  CorrectAnswer:  Die Darstellung der Verknuepfung zwischen latenter Variable und ihren (manifesten) Indikatoren
+  AnswerTests: omnitest(correctVal='Die Darstellung der Verknuepfung zwischen latenter Variable und ihren (manifesten) Indikatoren')
+  Hint: Koennen Sie eine Antwort als eindeutig falsch indentifizieren?  
+  
+
+# Zeichnen des Pfaddiagramms in R
+- Class: cmd_question
+  Output: Im Gegensatz zu AMOS oder anderen Softwareloesungen mit einer grafischen Benutzeroberflaeche, muss das SEM in R mit Hilfe von Syntax spezifiziert werden. Hierbei bietet das Package lavaan einen einfachen und schnell zu erlernenden Modell-Code. Laden Sie mit dem library()-Befehl das Package lavaan ein.
+  CorrectAnswer: library(lavann)
+  AnswerTests: omnitest(correctExpr='library(lavaan)')
+  Hint: Die korrekte Antwort lautet library(lavaan)
+  
+- Class: mult_question
+  Output: Mit welchem Operator kann eine latente Beziehung zwischen zwei Variablen spezifiziert werden?
+  AnswerChoices:  =~; ~=; ~; ~~
+  CorrectAnswer:  =~
+  AnswerTests: omnitest(correctVal='=~')
+  Hint: Latente Beziehung werden ueberprueft mit der Anweisung '=~' ueberprüft
+  
+- Class: text
+  Output: Fuer diesen Swirl-Kurs soll ein sehr einfaches Strukturgleichungsmodell erstellt werden. Hierzu soll die Variable "stresarb" (Stress am Arbeitsplatz) durch die beiden Variablen "psywohl" (Psychologisches Wohlbefinden) und "deprvers" (Depressive Verstimmung) erklaert werden. Darueber hinaus soll spezifiziert werden, dass die beiden  Praediktoren unabhaengig voneinander sind. Latente Variablen sind im Modell nicht enthalten.  
+
+
+# Zeichnen des Pfaddiagramms in R I
+- Class: cmd_question
+  Output: In einem ersten Schritt soll der Zusammenhang zwischen Stress am Arbeitsplatz "stresarb" und dem Psychologischen Wohlbefinden der Probanden "psywohl" modelliert werden. Geben Sie hierfuer den lavaan-Syntax an. Vergessen Sie nicht einfache Anfuehrungszeichen (') zu verwenden.
+  CorrectAnswer: 'stresarb ~ psywohl'
+  AnswerTests: omnitest(correctExpr = "'stresarb ~ psywohl'")
+  Hint: Die korrekte Antwort lautet ''stresarb ~ psywohl''
+
+- Class: mult_question
+  Output: Wie muesste der lavaaan-Syntax lauten, der angibt, dass die beiden Praediktoren unseres Modells statistisch unabhaengig sind?
+  AnswerChoices:  psywohl ~~ 0*deprvers; psywohl ~~ 1*deprvers; psywohl ~ 0*deprvers; psywohl =~ 0*deprvers
+  CorrectAnswer:  psywohl ~~ 0*deprvers
+  AnswerTests: omnitest(correctVal='psywohl ~~ 0*deprvers')
+  Hint: Statistische Unabhängigkeit wird mit der Anweisung '~~ 0*' modelliert.
+
+# Zeichnen des Pfaddiagramms in R II
+- Class: cmd_question
+  Output: Das vollstaendig erstellte Modell wurde unter "kausal.model" gespeichert und kann nun an die Funktion sem() uebergeben werden. Des weiteren sollen in der Funktion die Parameter data = daten sowie mimic = "EQS" uebergeben werden. Das so berechnete Modell soll in der Variable results.kausal.model gespeichert werden.
+  CorrectAnswer: results.kausal.model <- sem(kausal.model, data = daten, mimic = "EQS")
+  AnswerTests: any_of_exprs('results.kausal.model <- sem(kausal.model, data = daten, mimic = "EQS")', 'results.kausal.model = sem(kausal.model, data = daten, mimic = "EQS")')
+  Hint: Geben Sie folgenden Code ein  results.kausal.model <- sem(kausal.model, data = daten, mimic = "EQS")
+
+# Zeichnen des Pfaddiagramms in R III
+
+- Class: cmd_question
+  Output: Nun soll das Modell mit der Funktion semPaths gezeichnet werden. Hierzu sollen die zusaetzlichen Argumente "Model", "par", "Lisrel" an die Funktion uebergeben werden.
+  CorrectAnswer: semPaths(results.kausal.model, "Model", "par", "Lisrel")
+  AnswerTests: any_of_exprs('semPaths(results.kausal.model, "Model", "par", "Lisrel")')
+  Hint: Geben Sie folgenden Code ein  semPaths(results.kausal.model, "Model", "par", "Lisrel")
+
+# Ausgabe der Modellzusammenfassung
+
+- Class: cmd_question
+  Output: Lassen Sie sich abschließend die Modellzusammenfassung mit dem summary()-Befehl fuer die Variable results.kausal.model ausgeben.
+  CorrectAnswer: summary(results.kausal.model)  
+  AnswerTests: any_of_exprs('summary(results.kausal.model)')
+  Hint: Die richtige Antwort lautet summary(results.kausal.model) 
+
+- Class: mult_question
+  Output: Ist der modellierte Zusammenhang zwischen "stresarb" (Stress am Arbeitsplatz) und  "psywohl" (Psychologisches Wohlbefinden) statistisch signifikant?
+  AnswerChoices:  Ja; Nein;
+  CorrectAnswer:  =~
+  AnswerTests: omnitest(correctVal='Ja')
+  Hint: Die korrekte Antwort lautet 'Ja'
+
+- Class: mult_question
+  Output: Ist der modellierte Zusammenhang zwischen "stresarb" (Stress am Arbeitsplatz) und  "deprvers" (Depressive Verstimmung) statistisch signifikant?
+  AnswerChoices:  Ja; Nein;
+  CorrectAnswer:  =~
+  AnswerTests: omnitest(correctVal='Nein')
+  Hint: Die korrekte Antwort lautet 'Nein'
+
+- Class: cmd_question
+  Output: Ueberpruefen Sie die allgemeinen Aussagen des Strukturgleichungsmodells mit einer multiplen linearen Regression! Verwenden Sie dafuer den Befehl summary(lm()) mit dem Parameter data = daten. Zur Erinnerung - stresarb ist die abhaengige Variable, psywohl und deprvers sind die Praediktorvariablen.
+  CorrectAnswer: summary(lm(stresarb ~ psywohl +  deprvers, data = daten)) 
+  AnswerTests: any_of_exprs('summary(lm(stresarb ~ psywohl +  deprvers, data = daten))', 'summary(lm(stresarb ~ deprvers + psywohl, data = daten))')
+  
+  Hint: Die richtige Antwort lautet summary(lm(stresarb ~ psywohl +  deprvers, data = daten))
+
+# Zusammenfassung des Kapitels:
+- Class: text
+  Output: "In diesem Kapitel haben Sie gelernt,  einfache Strukturgleichungsmodelle zu erstellen und zu interpretieren. Sie haben dieses Kapitel und den gesamten kurs erfolgreich abgeschlossen. Herzlichen Glueckwunsch!"
+
