@@ -38,7 +38,7 @@
   
 - Class: mult_question
   Output: Eine Korrelation zwischen den Variablen A und B kann inhaltlich folgendermassen interpretiert werden...
-  AnswerChoices:  A ist Ursache für B; B ist Ursache für A; A und B beeinflussen sich gegenseitig; A und B werden durch die Variable C beeinflusst; Keine Antwort ist richtig; Alle Antworten sind richtig
+  AnswerChoices:  A ist Ursache fuer B; B ist Ursache fuer A; A und B beeinflussen sich gegenseitig; A und B werden durch die Variable C beeinflusst; Keine Antwort ist richtig; Alle Antworten sind richtig
   CorrectAnswer:  Alle Antworten sind richtig
   AnswerTests: omnitest(correctVal='Alle Antworten sind richtig')
   Hint: Koennen Sie eine Antwort als eindeutig falsch indentifizieren?
@@ -101,7 +101,7 @@
 # Ausgabe der Modellzusammenfassung
 
 - Class: cmd_question
-  Output: Lassen Sie sich abschließend die Modellzusammenfassung mit dem summary()-Befehl fuer die Variable results.kausal.model ausgeben.
+  Output: Lassen Sie sich abschliessend die Modellzusammenfassung mit dem summary()-Befehl fuer die Variable results.kausal.model ausgeben.
   CorrectAnswer: summary(results.kausal.model)  
   AnswerTests: any_of_exprs('summary(results.kausal.model)')
   Hint: Die richtige Antwort lautet summary(results.kausal.model) 
