@@ -21,9 +21,9 @@ library("GPArotation")
 
 # Prohibit warnings messages inside swirl, change encoding to "UTF-8" for german Umlaut
 options(warn=-1)
-if(file.exists("PFH_Course")){
+if(file.exists(file.path(path.package("swirl"), "Courses","Multivariate_Verfahren", "Faktorenanalyse", "09_FABA.sav"))){
   daten <- read.spss(
-    "PFH_Course/9_Faktorenanalyse/09_FABA.sav",
+    file.path(path.package("swirl"), "Courses","Multivariate_Verfahren", "Faktorenanalyse", "09_FABA.sav"),
     to.data.frame = TRUE,
     max.value.labels = Inf, 
     trim.factor.names = FALSE)

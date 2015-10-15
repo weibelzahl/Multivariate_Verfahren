@@ -22,9 +22,9 @@ library("reshape2")
 
 # SPSS-Daten von einer URL einlesen - Warnung kann ignoriert werden. Die Daten werden als Daten-Frame gespeichert.
 options(warn=-1)
-if(file.exists("PFH_Course")){
+if(file.exists(file.path(path.package("swirl"), "Courses","Multivariate_Verfahren", "Varianzanalyse", "03_Unfallopfer.sav"))){
   daten <- read.spss(
-    "PFH_Course/3_Varianzanalyse/03_Unfallopfer.sav",
+    file.path(path.package("swirl"), "Courses","Multivariate_Verfahren", "Varianzanalyse", "03_Unfallopfer.sav"),
     to.data.frame = TRUE,
     max.value.labels = Inf, 
     trim.factor.names = FALSE)

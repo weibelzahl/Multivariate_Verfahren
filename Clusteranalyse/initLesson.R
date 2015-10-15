@@ -10,13 +10,14 @@ library("foreign")
 
 # SPSS-Daten von einer URL einlesen - Warnung kann ignoriert werden. Die Daten werden als Daten-Frame gespeichert.
 options(warn=-1)
-if(file.exists("PFH_Course")){
+if(file.exists(file.path(path.package("swirl"), "Courses","Multivariate_Verfahren", "Clusteranalyse", "08_Arbeitserleben.sav"))){
   daten <- read.spss(
-    "PFH_Course/8_Clusteranalyse/08_Arbeitserleben.sav",
+    file.path(path.package("swirl"), "Courses","Multivariate_Verfahren", "Clusteranalyse", "08_Arbeitserleben.sav"),
     to.data.frame = TRUE,
     max.value.labels = Inf, 
     trim.factor.names = FALSE)
-}else if(!is.integer(try(download.file("http://www.google.de", tempfile(), quiet = TRUE), silent = TRUE))){
+}
+else if(!is.integer(try(download.file("http://www.google.de", tempfile(), quiet = TRUE), silent = TRUE))){
   stop("Dieses Tutorial benoetigt eine funktionierende Internet-Verbindung. Bitte ueberpruefen Sie Ihre Verbindung!")
 }else{
   daten <- read.spss(

@@ -12,9 +12,9 @@ library("foreign")
 
 # SPSS-Daten von einer URL einlesen - Warnung kann ignoriert werden. Die Daten werden als Daten-Frame gespeichert.
 options(warn = -1)
-if(file.exists("PFH_Course")){
+if(file.exists(file.path(path.package("swirl"), "Courses","Multivariate_Verfahren", "Zeitreihenanalyse", "07_Schach.sav"))){
   daten <- read.spss(
-    "PFH_Course/7_Zeitreihenanalyse/07_Schach.sav",
+    file.path(path.package("swirl"), "Courses","Multivariate_Verfahren", "Zeitreihenanalyse", "07_Schach.sav"),
     to.data.frame = TRUE,
     max.value.labels = Inf, 
     trim.factor.names = FALSE)
