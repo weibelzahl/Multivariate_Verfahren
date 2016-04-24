@@ -1,42 +1,42 @@
 - Class: meta
-  Course: PFH - Multivariate Verfahren IV
-  Lesson: Multivariate Verfahren IV
+  Course: Multivariate Verfahren
+  Lesson: Varianzanalyse
   Author: PFH
   Type: Standard
-  Organization: Private Hochschule Goettingen
+  Organization: Private Hochschule Göttingen
   Version: 0.1
   
   
-# Begruessung  
+# Begrüßung  
 - Class: text
-  Output: Willkommen zum interaktiven R-Kurs der PFH.
-
+  Output: Willkommen zum interaktiven R-Kurs der PFH zu Multivariaten Verfahren. In diesem Kapitel geht es um das Verfahren Varianzanalyse (ANOVA).
+  
 # Datensatz  
 - Class: text
-  Output: In der Speicheranzeige/Environment finden Sie den Datensatz "daten". Es handelt sich dabei um Daten von Opfern schwerer Verkehrsunfaelle, die hinsichtlich einiger physiologischer Parameter untersucht wurden.
+  Output: In der Speicheranzeige/Environment finden Sie den Datensatz "daten". Es handelt sich dabei um Daten von Opfern schwerer Verkehrsunfälle, die hinsichtlich einiger physiologischer Parameter untersucht wurden.
   
   
 # Datensatz
 - Class: text
-  Output: Den Probanden wurden jeweils 120 Bilder gezeigt, die aus vier inhaltlichen Kategorien stammten (positiv, neutral, negativ und traumarelevant). Es soll nun untersucht werden, ob Probanden mit einer posstraumatischen Belastungsstoerung (PTSD) andere Reaktionen zeigen als Probanden ohne PTSD.
+  Output: Den Probanden wurden jeweils 120 Bilder gezeigt, die aus vier inhaltlichen Kategorien stammten (positiv, neutral, negativ und traumarelevant). Es soll nun untersucht werden, ob Probanden mit einer posttraumatischen Belastungsstörung (PTSD) andere Reaktionen zeigen als Probanden ohne PTSD.
   
 # Deskriptive Auswertung
 - Class: cmd_question
-  Output: Verschaffen Sie sich einen Ueberblick ueber die Struktur der Daten. Nutzen Sie dazu den Befehl str()
+  Output: Verschaffen Sie sich einen Überblick über die Struktur der Daten. Nutzen Sie dazu den Befehl str()
   CorrectAnswer: str(daten)
   AnswerTests: omnitest(correctExpr="str(daten)")
   Hint: Geben Sie folgenden Code ein str(daten)
   
 # Deskriptive Auswertung
 - Class: cmd_question
-  Output: Fuer die folgende Analyse ist die Gruppierungsvariable "ptsd" wichtig. Lassen Sie sich die Werte dieser Variable mit Hilfe des $-Operators anzeigen.
+  Output: Für die folgende Analyse ist die Gruppierungsvariable "ptsd" wichtig. Lassen Sie sich die Werte dieser Variable mit Hilfe des $-Operators anzeigen.
   CorrectAnswer: daten$ptsd
   AnswerTests: omnitest(correctVal='daten$ptsd')
   Hint: Geben Sie folgenden Code ein daten$ptsd
 
 
 - Class: cmd_question
-  Output: Erstellen Sie mit Hilfe des Befehls table() eine Tabelle aus der die Anzahl an PTSD Probanden und gesunden Probanden ersichtlich wird. Die Daten sind in der soeben ausgewaehlten Gruppenvariable "ptsd" abgespeichert.
+  Output: Erstellen Sie mit Hilfe des Befehls table() eine Tabelle aus der die Anzahl an PTSD Probanden und gesunden Probanden ersichtlich wird. Die Daten sind in der soeben ausgewählten Gruppenvariable "ptsd" abgespeichert.
   CorrectAnswer: table(daten$ptsd)
   AnswerTests: omnitest(correctVal='table(daten$ptsd)')
   Hint: Geben Sie folgenden Code ein table(daten$ptsd)
@@ -44,7 +44,7 @@
 
 # Inferenzstatistik
 - Class: text
-  Output: Es soll nun untersucht werden, ob die Valenz abhaengig von der Diagnose verschieden ist. Dazu wird zunaechst getestet ob die Variable "valpos" (steht fuer Valenz Positiv) im Mittel verschieden ist fuer Probanden mit und ohne PTSD.
+  Output: Es soll nun untersucht werden, ob die Valenz abhängig von der Diagnose verschieden ist. Dazu wird zunächst getestet ob die Variable "valpos" (steht für Valenz Positiv) im Mittel verschieden ist für Probanden mit und ohne PTSD.
   
 # Inferenzstatistik
 - Class: cmd_question
@@ -59,11 +59,11 @@
   AnswerChoices:  Ja, 9 Werte fehlen; Ja, 90.50 Werte fehlen; Nein;
   CorrectAnswer:  Ja, 9 Werte fehlen
   AnswerTests: omnitest(correctVal='Ja, 9 Werte fehlen')
-  Hint: In R werden Fehlende Werte als NA's bezeichnet. 
+  Hint: In R werden fehlende Werte als NA's bezeichnet. 
   
 # Fehlende Werte
 - Class: text
-  Output: Eine Varianzanalyse mit fehlenden Werten ist mit Hilfe des Befehls ezANOVA() nicht moeglich. Im Vorfeld muss entweder eine Imputation von Werten, oder ein Ausschluss der fehlenden Faelle stattfinden.
+  Output: Eine Varianzanalyse mit fehlenden Werten ist mit Hilfe des Befehls ezANOVA() nicht möglich. Im Vorfeld muss entweder eine Imputation von Werten, oder ein Ausschluss der fehlenden Fälle stattfinden.
   
 # Fehlender Werte
 - Class: cmd_question
@@ -74,37 +74,37 @@
   
 # Fehlender Werte
 - Class: cmd_question
-  Output: Entfernen Sie alle fehlenden Beobachtungen aus dem Dataframe "daten.sub" mit Hilfe der Funktion na.omit(). Speichern Sie den Datensatz mit den vollstaendigen Beobachtungen in der Variable "daten.complete".
+  Output: Entfernen Sie alle fehlenden Beobachtungen aus dem Dataframe "daten.sub" mit Hilfe der Funktion na.omit(). Speichern Sie den Datensatz mit den vollständigen Beobachtungen in der Variable "daten.complete".
   CorrectAnswer: daten.complete <- na.omit(daten.sub)
   AnswerTests: any_of_exprs('daten.complete <- na.omit(daten.sub)', 'daten.complete = na.omit(daten.sub)')
   Hint: Geben Sie folgenden Code ein daten.complete <- na.omit(daten.sub)
  
 # Fehlende Werte
 - Class: text
-  Output: Nachdem alle fehlenden Werte entfernt wurden, kann jetzt die Varianzanalyse mit dem Datensatz "daten.complete" durchgefuehrt werden.
+  Output: Nachdem alle fehlenden Werte entfernt wurden, kann jetzt die Varianzanalyse mit dem Datensatz "daten.complete" durchgeführt werden.
   
 # Inferenzstatistik
 - Class: cmd_question
-  Output: Untersuchen Sie mit Hilfe der Funktion ezANOVA() ob ein signifikanter Unterschied zwischen den Gruppen PTSD und kein PTSD hinsichtlich der Variable "valpos" besteht. Nehmen Sie dazu die Variable "valpos" als abhaengige Variable und die Gruppierungsvariable "ptsd" als between Faktor. Die Probandennummer ist in der Variable "pb" gespeichert. Als Daten verwenden Sie "daten.complete".
+  Output: Untersuchen Sie mit Hilfe der Funktion ezANOVA() ob ein signifikanter Unterschied zwischen den Gruppen PTSD und kein PTSD hinsichtlich der Variable "valpos" besteht. Nehmen Sie dazu die Variable "valpos" als abhängige Variable und die Gruppierungsvariable "ptsd" als between Faktor. Die Probandennummer ist in der Variable "pb" gespeichert. Als Daten verwenden Sie "daten.complete".
   CorrectAnswer: ezANOVA(dv = valpos, between = ptsd, wid = pb, data = daten.complete)
   AnswerTests: omnitest(correctVal='ezANOVA(dv = valpos, between = ptsd, wid = pb, data = daten.complete)')
   Hint: Geben Sie folgenden Code ein ezANOVA(dv = valpos, between = ptsd, wid = pb, data = daten.complete)
   
 # Inferenzstatistik  
 - Class: mult_question
-  Output: Koennen Sie hinsichtlich der Variable "valpos" einen signifikanten Unterschied zwischen Probanden mit und ohne PTSD feststellen?
-  AnswerChoices:  Ja, der F-Wert ist besonders klein; Ja, der p-Wert ist kleiner als 0.05; Nein, der p-Wert ist groesser als 0.05; Nein, der F-Wert ist besonders hoch;
-  CorrectAnswer:  Nein, der p-Wert ist groesser als 0.05
-  AnswerTests: omnitest(correctVal='Nein, der p-Wert ist groesser als 0.05')
-  Hint: Der Unterschied ist nicht signifikant da der p-Wert groesser als 0.05 ist.
+  Output: Können Sie hinsichtlich der Variable "valpos" einen signifikanten Unterschied zwischen Probanden mit und ohne PTSD feststellen?
+  AnswerChoices:  Ja, der F-Wert ist besonders klein; Ja, der p-Wert ist kleiner als 0.05; Nein, der p-Wert ist grösser als 0.05; Nein, der F-Wert ist besonders hoch;
+  CorrectAnswer:  Nein, der p-Wert ist grösser als 0.05
+  AnswerTests: omnitest(correctVal='Nein, der p-Wert ist grösser als 0.05')
+  Hint: Der Unterschied ist nicht signifikant da der p-Wert grösser als 0.05 ist.
 
 # Fehlende Werte
 - Class: text
-  Output: Nun soll nicht nur der Unterschied bezueglich der Variable "Valpos" untersucht werden, sondern ein Unterschied in der Valenz allgemein. Dazu muss der Datensatz zunaechst vom wide-Format in das long-Format umgewandelt werden.
+  Output: Nun soll nicht nur der Unterschied bezüglich der Variable "valpos" untersucht werden, sondern ein Unterschied in der Valenz allgemein. Dazu muss der Datensatz zunächst vom wide-Format in das long-Format umgewandelt werden.
 
 # Inferenzstatistik
 - Class: cmd_question
-  Output: Fuegen Sie dem Datensatz "daten.sub" weiter die Variablen "valneu" (Valenz neutral), "valneg" (Valenz negativ) und "valtra" (Valenz Trauma) hinzu. Geben Sie dazu folgenden Befehl ein daten.sub <- data.frame(daten.sub, valneu = daten$valneu, valneg = daten$valneg, valtra = daten$valtra)
+  Output: Fügen Sie dem Datensatz "daten.sub" weiter die Variablen "valneu" (Valenz neutral), "valneg" (Valenz negativ) und "valtra" (Valenz Trauma) hinzu. Geben Sie dazu folgenden Befehl ein daten.sub <- data.frame(daten.sub, valneu = daten$valneu, valneg = daten$valneg, valtra = daten$valtra)
   CorrectAnswer: daten.sub <- data.frame(daten.sub, valneu = daten$valneu, valneg = daten$valneg, valtra = daten$valtra)
   AnswerTests: any_of_exprs('daten.sub <- data.frame(daten.sub, valneu = daten$valneu, valneg = daten$valneg, valtra = daten$valtra)', 'daten.sub = data.frame(daten.sub, valneu = daten$valneu, valneg = daten$valneg, valtra = daten$valtra)')
   Hint: Geben Sie folgenden Code ein daten.sub <- data.frame(daten.sub, valneu = daten$valneu, valneg = daten$valneg, valtra = daten$valtra)
@@ -125,22 +125,22 @@
   
 # Fehlende Werte
 - Class: text
-  Output: Jetzt sind die Daten im long-Format gespeichert und die fehlenden Werte wurden entfernt. Damit ist es moeglich eine Varianzanalyse mit Messwiederholungen durchzufuehren.
+  Output: Jetzt sind die Daten im long-Format gespeichert und die fehlenden Werte wurden entfernt. Damit ist es möglich eine Varianzanalyse mit Messwiederholungen durchzuführen.
   
 # Inferenzstatistik
 - Class: cmd_question
-  Output: Untersuchen Sie mit Hilfe der Funktion ezANOVA() ob hinsichtlich der Valenz ein Unterschied zwischen den Probanden mit PTSD und gesunden Probanden besteht. Nehmen Sie dazu als within Faktor die Variable "valenz" und als abhaengige Variable "wert". 
+  Output: Untersuchen Sie mit Hilfe der Funktion ezANOVA() ob hinsichtlich der Valenz ein Unterschied zwischen den Probanden mit PTSD und gesunden Probanden besteht. Nehmen Sie dazu als within Faktor die Variable "valenz" und als abhängige Variable "wert". 
   CorrectAnswer: ezANOVA(dv = wert, between = ptsd, wid = pb, within = valenz, data = daten.complete.long)
   AnswerTests: omnitest(correctVal='ezANOVA(dv = wert, between = ptsd, wid = pb, within = valenz, data = daten.complete.long)')
   Hint: Geben Sie folgenden Code ein ezANOVA(dv = wert, between = ptsd, wid = pb, within = valenz, data = daten.complete.long)
   
 # Inferenzstatistik  
 - Class: mult_question
-  Output: Welcher Effekt beschreibt einen Unterschied in der Valenz, abhaengig von der Behandlungsgruppe PTSD und nicht PTSD?
+  Output: Welcher Effekt beschreibt einen Unterschied in der Valenz, abhängig von der Behandlungsgruppe PTSD und nicht PTSD?
   AnswerChoices:  Der Haupteffekt ptsd; Der Haupteffekt valenz; Die Wechselwirkung "ptsd:valenz"; Bei einer signifikanten Wechselwirkung sind die Haupteffekte nicht interpretierbar;
   CorrectAnswer:  Die Wechselwirkung ptsd:valenz
   AnswerTests: omnitest(correctVal='Die Wechselwirkung "ptsd:valenz"')
-  Hint: Eine signifikante Wechselwirkung wuerde die Hypothese unterstreichen.
+  Hint: Eine signifikante Wechselwirkung würde die Hypothese unterstreichen.
 
 # Inferenzstatistik  
 - Class: mult_question
@@ -152,25 +152,20 @@
 
 # Inferenzstatistik  
 - Class: mult_question
-  Output: Mauchly's Test auf Sphaerizitaet war signifikant und die Sphaerizitaetsannahme nicht damit nicht erfuellt. Ein moeglicher Grund ist...
+  Output: Mauchly's Test auf Sphärizität war signifikant und die Sphärizitätsannahme nicht damit nicht erfüllt. Ein möglicher Grund ist...
   AnswerChoices:  die Varianzen der verschiedenen Valenzarten sind unterschiedlich; die Varianzen der verschiedenen Valenzarten sind gleich; die Mittelwerte der verschiedenen Valenzarten sind unterschiedlich; die Mittelwerte der verschiedenen Valenzarten sind gleich;
   CorrectAnswer:  die Varianzen der verschiedenen Valenzarten sind unterschiedlich
   AnswerTests: omnitest(correctVal='die Varianzen der verschiedenen Valenzarten sind unterschiedlich')
-  Hint: Sind die Varianzen der Valenzarten verschieden fuehrt dies zu einer signifikanten Sphaerizitaet.
+  Hint: Sind die Varianzen der Valenzarten verschieden führt dies zu einer signifikanten Sphärizität.
 
 # Inferenzstatistik  
 - Class: mult_question
-  Output: Wenn die Sphaerizitaetsannahme nicht erfuellt ist sollte man...
-  AnswerChoices:  Auf die Varianzanalyse als Auswertungsmethode verzichten; Die Teststatistik von Huynh-Feldt oder Greenhouse-Geiser verwenden; Den Kolmogorov-Smirnov Test im Vorfeld durchfuehren; Die Werte zunaechst standardisieren;
-  CorrectAnswer:  Die Teststatistik von Huynh-Feldt oder Greenhouse-Geiser verwenden
-  AnswerTests: omnitest(correctVal='Die Teststatistik von Huynh-Feldt oder Greenhouse-Geiser verwenden')
+  Output: Wenn die Sphärizitätsannahme nicht erfüllt ist sollte man...
+  AnswerChoices:  auf die Varianzanalyse als Auswertungsmethode verzichten; die Teststatistik von Huynh-Feldt oder Greenhouse-Geiser verwenden; den Kolmogorov-Smirnov Test im Vorfeld durchführen; die Werte zunächst standardisieren;
+  CorrectAnswer:  die Teststatistik von Huynh-Feldt oder Greenhouse-Geiser verwenden
+  AnswerTests: omnitest(correctVal='die Teststatistik von Huynh-Feldt oder Greenhouse-Geiser verwenden')
   Hint: Es wird empfohlen die abgebildete Teststatistik von Huynh-Feldt oder Greenhouse-Geiser stattdessen zu verwenden.
 
 # Ende
 - Class: text
-  Output: In diesem Kapitel haben Sie gelernt eine Varianzanalyse durchzufuehren, sowie die Daten fuer diese anzupassen. Sie haben dieses Kapitel nun erfolgreich abgeschlossen.
-
-
-  
-
-
+  Output: In diesem Kapitel haben Sie gelernt eine Varianzanalyse durchzuführen, sowie die Daten für diese anzupassen. Sie haben dieses Kapitel nun erfolgreich abgeschlossen.

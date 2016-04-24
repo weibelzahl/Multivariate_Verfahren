@@ -1,22 +1,22 @@
 - Class: meta
-  Course: PFH - Multivariate Verfahren IV
-  Lesson: Multivariate Verfahren IV
+  Course: Multivariate Verfahren
+  Lesson: Zeitreihenanalyse
   Author: PFH
   Type: Standard
-  Organization: Private Hochschule Goettingen
+  Organization: Private Hochschule Göttingen
   Version: 0.1
   
    
 - Class: text
-  Output: "Willkommen zum interaktiven R-Kurs der PFH."
-
+  Output: Willkommen zum interaktiven R-Kurs der PFH zu Multivariaten Verfahren. In diesem Kapitel geht es um das Verfahren der Zeitreihenanalyse.
+  
 - Class: text
-  Output: Oben rechts finden Sie in der Speicheranzeige/Environment einen Datensatz. Die Zeitreihe enthaelt die Herzfrequenz eines Schachspielers waehrend einer Partie gegen einen Schachcomputer. Es gibt 1012 Messungen der Herzfrequenz, wobei 3 Beobachtungen pro Sekunde ueber knapp 6 Minuten vorhanden sind. Die Aufnahme geschah im mitteleren Teil des Schachspiels. 
+  Output: Oben rechts finden Sie in der Speicheranzeige/Environment einen Datensatz. Die Zeitreihe enthält die Herzfrequenz eines Schachspielers während einer Partie gegen einen Schachcomputer. Es gibt 1012 Messungen der Herzfrequenz, wobei 3 Beobachtungen pro Sekunde über knapp 6 Minuten vorhanden sind. Die Aufnahme geschah im mittleren Teil des Schachspiels. 
 
 
 # Plot
 - Class: cmd_question
-  Output: Erstellen Sie eine grafische Uebersicht der Herzfrequenz, in der die Datenpunkte durch Linien verbunden sind. Dafuer koennen sie den Befehl plot() verwenden und den Parameter type = "l" setzen.
+  Output: Erstellen Sie eine grafische Übersicht der Herzfrequenz, in der die Datenpunkte durch Linien verbunden sind. Dafür können sie den Befehl plot() verwenden und den Parameter type = "l" setzen.
   CorrectAnswer: plot(daten, type = "l")
   AnswerTests: any_of_exprs('plot(daten, type = "l")')
   Hint: Die korrekte Antwort lautet plot(daten, type = "l")
@@ -32,20 +32,20 @@
 
 # Trendanalyse
 - Class: cmd_question
-  Output: Als naechstes moechten wir ueberpruefen, ob es eine langfristige Tendenz in der Herzfrequenz gibt. Ueberpruefen Sie mit dem Befehl lm() ob ein linearer Trend in den Daten vorhanden ist. Verwenden Sie die Herzfrequenz als abhaengige Variable und die Zeitpunkte als erklaerende Variable. 
+  Output: Als nächstes möchten wir überprüfen, ob es eine langfristige Tendenz in der Herzfrequenz gibt. Überprüfen Sie mit dem Befehl lm() ob ein linearer Trend in den Daten vorhanden ist. Verwenden Sie die Herzfrequenz als abhängige Variable und die Zeitpunkte als erklärende Variable. 
   CorrectAnswer: lm(daten ~ vec)
   AnswerTests: any_of_exprs('lm(daten ~ vec)', 'lm(daten~vec)')
   Hint: Die korrekte Antwort lautet lm(daten ~ vec)
 
 # Trendanalyse
 - Class: cmd_question
-  Output: Lassen Sie sich eine Uebersicht der Regression ausgeben. Verwenden Sie dafuer den summary() Befehl. 
+  Output: Lassen Sie sich eine Übersicht der Regression ausgeben. Verwenden Sie dafür den summary() Befehl. 
   CorrectAnswer: summary(lm(daten ~ seq(1, length(daten))))
   AnswerTests: any_of_exprs('summary(lm(daten ~ seq(1, length(daten))))')
   Hint: Die korrekte Antwort lautet summary(lm(daten ~ seq(1, length(daten))))
 
 - Class: mult_question
-  Output: Auf welchen Wert wird die Steigung der Regressionsgeraden (der lineare Trend) geschaetzt?
+  Output: Auf welchen Wert wird die Steigung der Regressionsgeraden (der lineare Trend) geschätzt?
   AnswerChoices:  0.006; 72; 0.09; 6.1
   CorrectAnswer:  0.006
   AnswerTests: omnitest(correctVal='0.006')
@@ -61,7 +61,7 @@
 
 # Trendanalyse
 - Class: cmd_question
-  Output: Als naechstes betrachten wir, ob die Herzfrequenz von der unmittelbar vorhergehenden Herzfrequenzen abhaengt. Lassen Sie sich die Autokorrelationsfunktion der Zeitreihe ausgeben. Dafuer koennen Sie den Befehl acf() verwenden.
+  Output: Als nächstes betrachten wir, ob die Herzfrequenz von der unmittelbar vorhergehenden Herzfrequenzen abhängt. Lassen Sie sich die Autokorrelationsfunktion der Zeitreihe ausgeben. Dafür können Sie den Befehl acf() verwenden.
   CorrectAnswer: acf(daten)
   AnswerTests: omnitest(correctVal=acf(daten), correctExpr='acf(daten)')
   Hint: Die korrekte Antwort lautet acf(daten)
@@ -84,40 +84,39 @@
 
 # Trendanalyse
 - Class: cmd_question
-  Output: Es werden drei Datenpunkte pro Sekunde erhoben. Um einen besseren Ueberblick ueber die Daten zu bekommen, entscheiden Sie sich die Durchschnittswerte pro Minute zu betrachten. Dafuer koennen sie den Befehl ma() verwenden. Erstellen Sie einen Plot, aehnlich zu dem Plot der Zeitreihe, jedoch mit den minuetlichen Durschnittswerten. Dafuer koennen Sie den Befehl plot() verwenden und den Parameter type = "l" setzen.
+  Output: Es werden drei Datenpunkte pro Sekunde erhoben. Um einen besseren Überblick über die Daten zu bekommen, entscheiden Sie sich die Durchschnittswerte pro Minute zu betrachten. Dafür können sie den Befehl ma() verwenden. Erstellen Sie einen Plot, ähnlich zu dem Plot der Zeitreihe, jedoch mit den minütlichen Durchschnittswerten. Dafür können Sie den Befehl plot() verwenden und den Parameter type = "l" setzen.
   CorrectAnswer: plot(ma(daten, 180), type = "l")
   AnswerTests: any_of_exprs('plot(ma(x= daten, order= 180), type = "l")', 'plot(ma(daten, 180), type = "l")', 'plot(ma(x = daten, 180), type = "l")', 'plot(ma(daten, order = 180), type = "l")')
   Hint: Die korrekte Antwort lautet plot(ma(daten, 180), type = 'l')
 
-# Begruessung  
 - Class: text
-  Output: "Um zu ueberpruefen, dass Sie mit Zeitreihen richtig gut umgehen können, hier noch einige Testfragen." 
+  Output: "Um zu überprüfen, dass Sie mit Zeitreihen richtig gut umgehen können, hier noch einige Testfragen." 
 
 
 - Class: mult_question
   Output: Der gleitende Durchschnitt...
-  AnswerChoices:  ist konstant ueber die Zeit; verwendet variierende Gewichte; verwendet das arithmetische Mittel ueber ein variierendes Zeitfenster; analysiert die Korrelation der Zeitreihe mit sich selbst zu einem frueheren Zeitpunkt
-  CorrectAnswer:  verwendet das arithmetische Mittel ueber ein variierendes Zeitfenster
-  AnswerTests: omnitest(correctVal='verwendet das arithmetische Mittel ueber ein variierendes Zeitfenster')
+  AnswerChoices:  ist konstant über die Zeit; verwendet variierende Gewichte; verwendet das arithmetische Mittel über ein variierendes Zeitfenster; analysiert die Korrelation der Zeitreihe mit sich selbst zu einem früheren Zeitpunkt
+  CorrectAnswer:  verwendet das arithmetische Mittel über ein variierendes Zeitfenster
+  AnswerTests: omnitest(correctVal='verwendet das arithmetische Mittel über ein variierendes Zeitfenster')
   Hint: Ein Hinweis "Das arithmetische Mittel bildet einen Durchschnitt"
 
 
 - Class: mult_question
-  Output: Fuer die Autokorrelationsfunktion gilt...
-  AnswerChoices: Autokorrelationswerte sind konstant ueber die Zeit; Die Autokorrelationsfunktion verwendet variierende Gewichte zur verbesserten Schaetzung; Die Autokorrelationsfunktion verwendet das arithmetische Mittel ueber ein variierendes Zeitfenster; Die Autokorrelationsfunktion analysiert die Korrelation der Zeitreihe mit sich selbst zu einem frueheren Zeitpunkt
-  CorrectAnswer:  analysiert die Korrelation zwischen unterschiedlichen Zeitpunkten einer Zeitreihe
-  AnswerTests: omnitest(correctVal='analysiert die Korrelation der Zeitreihe mit sich selbst zu einem frueheren Zeitpunkt')
-  Hint: Ein Hinweis "Eine Autokorrelationsfunktion misst die Autokorrelation einer Zeitreihe mit Zetreihen, in denen die Messwerte um Zeiteinheiten verschoben werden."
+  Output: Für die Autokorrelationsfunktion gilt...
+  AnswerChoices: Autokorrelationswerte sind konstant über die Zeit; Die Autokorrelationsfunktion verwendet variierende Gewichte zur verbesserten Schätzung; Die Autokorrelationsfunktion verwendet das arithmetische Mittel über ein variierendes Zeitfenster; Die Autokorrelationsfunktion analysiert die Korrelation der Zeitreihe mit sich selbst zu einem früheren Zeitpunkt
+  CorrectAnswer: Die Autokorrelationsfunktion analysiert die Korrelation zwischen unterschiedlichen Zeitpunkten einer Zeitreihe
+  AnswerTests: omnitest(correctVal='Die Autokorrelationsfunktion analysiert die Korrelation der Zeitreihe mit sich selbst zu einem früheren Zeitpunkt')
+  Hint: Ein Hinweis "Eine Autokorrelationsfunktion misst die Autokorrelation einer Zeitreihe mit Zeitreihen, in denen die Messwerte um Zeiteinheiten verschoben werden."
 
 - Class: mult_question
-  Output: Fuer die Steigung einer Regressionsgeraden (linearer Trend) gilt...
-  AnswerChoices:  Alle Zeitreihen haben einen linearen Trend;  Ein negativer linearer Trend fuehrt zu positiven Werten in der Autokorrelationsfunktion; Ist die Varianz der Beobachtungen kleiner 0 gibt es keinen Trend; Ein linearer Trend kann nur positiv sein
-  CorrectAnswer:  ein negativer linearer Trend fuehrt zu positiven Werten in der Autokorrelationsfunktion
-  AnswerTests: omnitest(correctVal='ein negativer linearer Trend fuehrt zu positiven Werten in der Autokorrelationsfunktion')
+  Output: Für die Steigung einer Regressionsgeraden (linearer Trend) gilt...
+  AnswerChoices:  Alle Zeitreihen haben einen linearen Trend;  Ein negativer linearer Trend führt zu positiven Werten in der Autokorrelationsfunktion; Ist die Varianz der Beobachtungen kleiner 0 gibt es keinen Trend; Ein linearer Trend kann nur positiv sein
+  CorrectAnswer:  ein negativer linearer Trend führt zu positiven Werten in der Autokorrelationsfunktion
+  AnswerTests: omnitest(correctVal='ein negativer linearer Trend führt zu positiven Werten in der Autokorrelationsfunktion')
   Hint: Ein Hinweis "Das Vorzeichen des Trends hat keine Auswirkung auf die Autokorrelationsfunktion."
 
 - Class: text
-  Output: "In diesem Kapitel haben Sie gelernt, Zeitreihendaten zu analysieren. Sie haben die Trendanayse, Auto-korrelation und gleitende Durchschnitte kennen gelernt. Sie haben dieses Kapitel nun erfolgreich abgeschlossen." 
+  Output: "In diesem Kapitel haben Sie gelernt, Zeitreihendaten zu analysieren. Sie haben die Trendanalyse, Autokorrelation und gleitende Durchschnitte kennen gelernt. Sie haben dieses Kapitel nun erfolgreich abgeschlossen." 
 
 
 

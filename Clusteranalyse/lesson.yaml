@@ -1,15 +1,15 @@
 - Class: meta
-  Course: PFH - Multivariate Verfahren III
-  Lesson: Multivariate Verfahren III
+  Course: Multivariate Verfahren
+  Lesson: Clusteranalyse
   Author: PFH
   Type: Standard
-  Organization: Private Hochschule Goettingen
+  Organization: Private Hochschule Göttingen
   Version: 0.1
 
 
-# Begruessung  
+# Begrüßung  
 - Class: text
-  Output: Willkommen zum interaktiven R-Kurs der PFH.
+  Output: Willkommen zum interaktiven R-Kurs der PFH zu Multivariaten Verfahren. In diesem Kapitel geht es um das Verfahren Clusteranalyse.
 
 # Datensatz 
 - Class: text
@@ -17,54 +17,54 @@
 
 # Datensatz
 - Class: text
-  Output: Ziel des Projekts war es zu ermitteln, inwieweit sich verschiedene Arbeitsbedingungen auf gesundheitsrelevante Faktoren auswirken. Dazu wurden 124 Personen untersucht und ihre Taetigkeit in fuenf Merkmalsgruppen unterteilt, die mit 20 verschiedenen Variablen ermittelt wurden. 
+  Output: Ziel des Projekts war es zu ermitteln, inwieweit sich verschiedene Arbeitsbedingungen auf gesundheitsrelevante Faktoren auswirken. Dazu wurden 124 Personen untersucht und ihre Tätigkeit in fünf Merkmalsgruppen unterteilt, die mit 20 verschiedenen Variablen ermittelt wurden. 
 
 # Deskriptive Auswertung
 - Class: cmd_question
-  Output: Verschaffen Sie sich einen Ueberblick ueber die Struktur der Daten. Nutzen Sie dazu den Befehl str()
+  Output: Verschaffen Sie sich einen Überblick über die Struktur der Daten. Nutzen Sie dazu den Befehl str()
   CorrectAnswer: str(daten)
   AnswerTests: omnitest(correctVal='str(daten)')
   Hint: Geben Sie folgenden Code ein str(daten)
 
 # Datensatz
 - Class: text
-  Output: Sie sehen die 5 Faktoren "tech_orga_bed" (Technisch-/Organisatorische Bedingung), "koop_kommu" (Kooperations- und Kommunikationsbedingung), "verant" (Verantwortung), "niv_geist_anf" (Niveau geistiger Anforderung) und "lernpot" (Lernpotential).
+  Output: Sie sehen die 5 Faktoren "tech_orga_bed" (Technisch-/Organisatorische Bedingung), "koop_kommu" (Kooperations- und Kommunikationsbedingung), "verant" (Verantwortung), "niv_geist_anf" (Niveau geistiger Anforderung) und "lernpot" (Lernpotenzial).
 
 # Datensatz
 - Class: cmd_question
-  Output: Ziel ist es nun, die Probanden Clustern zuzuordnen, die sich durch die genannten fuenf Bedingungen auszeichnen. Erstellen Sie dazu einen neuen Dataframe names "daten.auswahl", in dem alle Variablen enthalten sind ausser Probandennummer (pb).
+  Output: Ziel ist es nun, die Probanden Clustern zuzuordnen, die sich durch die genannten fünf Bedingungen auszeichnen. Erstellen Sie dazu einen neuen Dataframe namens "daten.auswahl", in dem alle Variablen enthalten sind außer Probandennummer (pb).
   CorrectAnswer: daten.auswahl <- daten[, -1]
   AnswerTests: any_of_exprs('daten.auswahl = daten[,-1]' , 'daten.auswahl <- daten[,-1]', 'daten.auswahl = daten[, 2:6]', 'daten.auswahl <- daten[, 2:6]')
   Hint: Geben Sie folgenden Code ein daten.auswahl <- daten[, -1]
 
 # Datensatz
 - Class: cmd_question
-  Output: Im Vorfeld einer Clusteranalyse muessen, mit Hilfe des Befehls scale(), zunaechst z-Werte der Variablen berechnet werden. Speichern Sie die z-standardisierten Werte im Dataframe "daten.standard".
+  Output: Im Vorfeld einer Clusteranalyse müssen, mit Hilfe des Befehls scale(), zunächst z-Werte der Variablen berechnet werden. Speichern Sie die z-standardisierten Werte im Dataframe "daten.standard".
   CorrectAnswer: daten.standard <- scale(daten.auswahl)
   AnswerTests: any_of_exprs('daten.standard <- scale(daten.auswahl)' , 'daten.standard = scale(daten.auswahl)')
   Hint: Geben Sie folgenden Code ein daten.standard <- scale(daten.auswahl)
 
 # Datensatz
 - Class: cmd_question
-  Output: Ausserdem ist es notwendig die Distanzen der Probanden zueinander mit Hilfe einer geeigneten Metrik zu berechnen. Berechnen Sie die Euklidische Distanz zwischen den Beobachtungen mit Hilfe der Funktion dist(), und speichern Sie das Ergebnis in der Variable "dist.euclid". Um die euklidische Distanz zu berechnen muessen sie dem Parameter "method" den Wert "euclidean" uebergeben. Als Datensatz verwenden Sie "daten.standard".
+  Output: Außerdem ist es notwendig die Distanzen der Probanden zueinander mit Hilfe einer geeigneten Metrik zu berechnen. Berechnen Sie die Euklidische Distanz zwischen den Beobachtungen mit Hilfe der Funktion dist(), und speichern Sie das Ergebnis in der Variable "dist.euclid". Um die euklidische Distanz zu berechnen müssen sie dem Parameter "method" den Wert "euclidean" übergeben. Als Datensatz verwenden Sie "daten.standard".
   CorrectAnswer: dist.euclid <- dist(daten.standard, method = "euclidean")
   AnswerTests: any_of_exprs('dist.euclid <- dist(daten.standard, method = "euclidean")' , 'dist.euclid = dist(daten.standard, method = "euclidean")')
   Hint: Geben Sie folgenden Code ein dist.euclid <- dist(daten.standard, method = "euclidean")
 
 # Datensatz
 - Class: text
-  Output: Mit hilfe der Euklidischen Distanzen der z-Werte ist es nun moeglich eine Average Linkage Clusteranalyse durchzufuehren.
+  Output: Mit Hilfe der Euklidischen Distanzen der z-Werte ist es nun möglich eine Average Linkage Clusteranalyse durchzuführen.
 
 # Datensatz
 - Class: cmd_question
-  Output: Fuehren Sie eine Average Linkage Clusteranalyse mit dem Befehl hclust() durch. Setzen Sie dabei das Argument method="average" ein und speichern Sie das Ergebnis in der Variable "cluster.analyse". Verwenden Sie den eben erstellten Datensatz mit den euklidischen Distanzen. 
+  Output: Führen Sie eine Average Linkage Clusteranalyse mit dem Befehl hclust() durch. Setzen Sie dabei das Argument method="average" ein und speichern Sie das Ergebnis in der Variable "cluster.analyse". Verwenden Sie den eben erstellten Datensatz mit den euklidischen Distanzen. 
   CorrectAnswer: cluster.analyse <- hclust(dist.euclid, method = "average")
   AnswerTests: any_of_exprs('cluster.analyse <- hclust(dist.euclid, method = "average")' , 'cluster.analyse = hclust(dist.euclid, method = "average")')
   Hint: Geben Sie folgenden Code ein cluster.analyse <- hclust(dist.euclid, method = "average")
 
 # Datensatz
 - Class: text
-  Output: Die Clusteranalyse wurde nun durchgefuehrt und das Ergebnis ist in der Variable "cluster.analyse" gespeichert.
+  Output: Die Clusteranalyse wurde nun durchgeführt und das Ergebnis ist in der Variable "cluster.analyse" gespeichert.
 
 # Datensatz
 - Class: cmd_question
@@ -75,7 +75,7 @@
 
 # Datensatz
 - Class: text
-  Output: Im Listenelement "merge" wird beschrieben welche Cluster im jeweiligen Schritt zusammengefuehrt wurden. In der Variable "height" steht die Distanz der zusammengefuehrten Cluster im jeweiligen Schritt. Negative Eintraege beziehen sich auf Beobachtungen, positive auf die in dem Schritt entstanden Cluster.
+  Output: Im Listenelement "merge" wird beschrieben welche Cluster im jeweiligen Schritt zusammengeführt wurden. In der Variable "height" steht die Distanz der zusammengeführten Cluster im jeweiligen Schritt. Negative Einträge beziehen sich auf Beobachtungen, positive auf die in dem Schritt entstanden Cluster.
 
 # Datensatz
 - Class: cmd_question
@@ -87,18 +87,18 @@
 # Inferenzstatistik  
 - Class: mult_question
   Output: In Bezug auf die soeben ausgegebene Variable "cluster.analyse$merge" -  Im ersten Schritt der Clusteranalyse wurden...
-  AnswerChoices:  Die Beobachtungen 80 und 87 in einem Cluster zusammengefuehrt; Die Cluster 80 und 87 zusammen gefuehrt; Die Beobachtungen 80 und 87 aus einem Gesamtcluster entfernt; Die Probanden 80 und 87 zu einem Cluster zusammengefuehrt;
-  CorrectAnswer:  Die Beobachtungen 80 und 87 in einem Cluster zusammengefuehrt
-  AnswerTests: omnitest(correctVal='Die Beobachtungen 80 und 87 in einem Cluster zusammengefuehrt')
-  Hint: Negative Eintraege beziehen sich auf Beobachtungen, positive auf die in dem Schritt entstanden Cluster. Es wurden also Beobachtungen 80 und 87 zusammengefuehrt.
+  AnswerChoices:  Die Beobachtungen 80 und 87 in einem Cluster zusammengeführt; Die Cluster 80 und 87 zusammen geführt; Die Beobachtungen 80 und 87 aus einem Gesamtcluster entfernt; Die Probanden 80 und 87 zu einem Cluster zusammengeführt;
+  CorrectAnswer:  Die Beobachtungen 80 und 87 in einem Cluster zusammengeführt
+  AnswerTests: omnitest(correctVal='Die Beobachtungen 80 und 87 in einem Cluster zusammengeführt')
+  Hint: Negative Einträge beziehen sich auf Beobachtungen, positive auf die in dem Schritt entstanden Cluster. Es wurden also Beobachtungen 80 und 87 zusammengeführt.
 
 # Inferenzstatistik  
 - Class: mult_question
   Output: In Bezug auf die soeben ausgegebene Variable "cluster.analyse$merge" -  Im 14. Schritt der Clusteranalyse wurden...
-  AnswerChoices:  Die Beobachtung 90 und das Cluster aus dem ersten Schritt zusammengefuehrt; Das Cluster 90 und die erste Beobachtung zusammengefuehrt; Die Cluster 90 und Cluster 1 zusammengefuehrt; Die Beobachtungen 90 und 1 zusammengefuehrt;
-  CorrectAnswer:  Die Beobachtung 90 und das Cluster aus dem ersten Schritt zusammengefuehrt
-  AnswerTests: omnitest(correctVal='Die Beobachtung 90 und das Cluster aus dem ersten Schritt zusammengefuehrt')
-  Hint: Negative Eintraege beziehen sich auf Beobachtungen, positive auf die in dem Schritt entstanden Cluster. Es wurden also die Beobachtung 90 und das Cluster dem ersten Schritt zusammengefuehrt
+  AnswerChoices:  Die Beobachtung 90 und das Cluster aus dem ersten Schritt zusammengeführt; Das Cluster 90 und die erste Beobachtung zusammengeführt; Die Cluster 90 und Cluster 1 zusammengeführt; Die Beobachtungen 90 und 1 zusammengeführt;
+  CorrectAnswer:  Die Beobachtung 90 und das Cluster aus dem ersten Schritt zusammengeführt
+  AnswerTests: omnitest(correctVal='Die Beobachtung 90 und das Cluster aus dem ersten Schritt zusammengeführt')
+  Hint: Negative Einträge beziehen sich auf Beobachtungen, positive auf die in dem Schritt entstanden Cluster. Es wurden also die Beobachtung 90 und das Cluster dem ersten Schritt zusammengeführt
   
 
 # Datensatz
@@ -110,19 +110,19 @@
 
 # Inferenzstatistik  
 - Class: mult_question
-  Output: Welche der folgenden Saetze ueber den Vektor "cluster.analyse$height" ist falsch?
-  AnswerChoices:  Wenn ein Wert im Vektor kleiner ist als der vorherige, dann ist diese Clusterloesung zu bevorzugen; Grosse Spruenge zwischen zwei Werten deuten auf unguenstige Clusterzusammenfuehrungen hin; Der 5. Eintrag des Vektors entspricht dem 5. Zusammenfuehrungsschritt; Der erste Eintrag gibt die Distanz zwischen den zuerst zusammengefuehrten Beobachtungen an;
-  CorrectAnswer:  Wenn ein Wert im Vektor kleiner ist als der vorherige, dann ist diese Clusterloesung zu bevorzugen
-  AnswerTests: omnitest(correctVal='Wenn ein Wert im Vektor kleiner ist als der vorherige, dann ist diese Clusterloesung zu bevorzugen')
-  Hint: Die Elemente im Vektor sind immer ansteigend, somit kann auf einen Wert kein kleinerer Wert folgen. Wenn ein Wert im Vektor kleiner ist als der vorherige, dann ist diese Clusterloesung zu bevorzugen ist somit falsch.
+  Output: Welche der folgenden Sätze über den Vektor "cluster.analyse$height" ist falsch?
+  AnswerChoices:  Wenn ein Wert im Vektor kleiner ist als der vorherige, dann ist diese Clusterlösung zu bevorzugen; Große Sprünge zwischen zwei Werten deuten auf ungünstige Clusterzusammenführungen hin; Der 5. Eintrag des Vektors entspricht dem 5. Zusammenführungsschritt; Der erste Eintrag gibt die Distanz zwischen den zuerst zusammengeführten Beobachtungen an;
+  CorrectAnswer:  Wenn ein Wert im Vektor kleiner ist als der vorherige, dann ist diese Clusterlösung zu bevorzugen
+  AnswerTests: omnitest(correctVal='Wenn ein Wert im Vektor kleiner ist als der vorherige, dann ist diese Clusterlösung zu bevorzugen')
+  Hint: Die Elemente im Vektor sind immer ansteigend, somit kann auf einen Wert kein kleinerer Wert folgen. Wenn ein Wert im Vektor kleiner ist als der vorherige, dann ist diese Clusterlösung zu bevorzugen ist somit falsch.
 
 # Inferenzstatistik  
 - Class: mult_question
-  Output: In Bezug auf den Vektor "cluster.analyse$height" -  Wie gross war die Euklidische Distanz der zusammengefuehrten Beobachtungen im 3. Schritt der Clusteranalyse?
-  AnswerChoices:  0.155; 3.305; Fuer die Information ist der Vektor "cluster.analyse$merge" erforderlich; Die euklidische Distanz laesst sich nicht ablesen;
+  Output: In Bezug auf den Vektor "cluster.analyse$height" -  Wie groß war die Euklidische Distanz der zusammengeführten Beobachtungen im 3. Schritt der Clusteranalyse?
+  AnswerChoices:  0.155; 3.305; Für die Information ist der Vektor "cluster.analyse$merge" erforderlich; Die euklidische Distanz lässt sich nicht ablesen;
   CorrectAnswer:  0.155
   AnswerTests: omnitest(correctVal='0.155')
-  Hint: Der 3. Eintrag entspricht der euklidischen Distanz zwischen den zum 3. Schritt zusammengefuehrten Beobachtungen. Somit betraegt die Distanz 0.155.
+  Hint: Der 3. Eintrag entspricht der euklidischen Distanz zwischen den zum 3. Schritt zusammengeführten Beobachtungen. Somit beträgt die Distanz 0.155.
 
 # Datensatz
 - Class: cmd_question
@@ -133,14 +133,14 @@
 
 # Datensatz
 - Class: cmd_question
-  Output: Fuer das betrachtete Beispiel ist eine 2-Cluster Loesung inhaltlich sinnvoll. Lassen Sie sich die beiden Cluster mit Hilfe des Befehls rect.hclust() anzeigen. Setzen Sie dabei das Argument border="red". 
+  Output: Für das betrachtete Beispiel ist eine 2-Cluster Lösung inhaltlich sinnvoll. Lassen Sie sich die beiden Cluster mit Hilfe des Befehls rect.hclust() anzeigen. Setzen Sie dabei das Argument border="red". 
   CorrectAnswer: rect.hclust(cluster.analyse, k = 2, border = "red")
   AnswerTests: omnitest(correctVal='rect.hclust(cluster.analyse, k = 2, border = "red")')
   Hint: Geben Sie folgenden Code ein rect.hclust(cluster.analyse, k = 2, border = "red")
 
 # Datensatz
 - Class: cmd_question
-  Output: Fuer die abschliessende Analyse ist eine Liste der Clusterzugehoerigkeit notwendig. Erstellen Sie diese fuer eine 2-Cluster Loesung mit dem Befehl cutree().
+  Output: Für die abschließende Analyse ist eine Liste der Clusterzugehörigkeit notwendig. Erstellen Sie diese für eine 2-Cluster Lösung mit dem Befehl cutree().
   CorrectAnswer: cutree(cluster.analyse, k = 2)
   AnswerTests: omnitest(correctVal='cutree(cluster.analyse, k = 2)')
   Hint: Geben Sie folgenden Code ein cutree(cluster.analyse, k = 2)
@@ -151,8 +151,8 @@
   AnswerChoices:  Dem Cluster 2; Dem Cluster 1; Die Beobachtung konnte nicht zugeordnet werden;
   CorrectAnswer:  Dem Cluster 2
   AnswerTests: omnitest(correctVal='Dem Cluster 2')
-  Hint: Im letzten Eintrag des Vektors wird die Clusterzugehoerigkeit der letzten Beobachtung dargestellt. Die Beobachtung wird in das Cluster 2 sortiert.
+  Hint: Im letzten Eintrag des Vektors wird die Clusterzugehörigkeit der letzten Beobachtung dargestellt. Die Beobachtung wird in das Cluster 2 sortiert.
 
   # Ende
 - Class: text
-  Output: In diesem Kapitel haben Sie gelernt eine Clusteranalyse durchzufuehren und zu interpretieren. Sie haben dieses Kapitel nun erfolgreich abgeschlossen.
+  Output: In diesem Kapitel haben Sie gelernt eine Clusteranalyse durchzuführen und zu interpretieren. Sie haben dieses Kapitel nun erfolgreich abgeschlossen.

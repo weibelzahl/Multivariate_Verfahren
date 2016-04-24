@@ -1,6 +1,6 @@
 - Class: meta
-  Course: PFH - Multivariate Verfahren
-  Lesson: Multivariate Verfahren I 
+  Course: Multivariate Verfahren
+  Lesson: Einführung
   Author: PFH
   Type: Standard
   Organization: Private Hochschule Göttingen
@@ -9,8 +9,8 @@
   
 # Begrüßung  
 - Class: text
-  Output: "Willkommen zum ersten Kapitel des interaktiven R-Kurses der PFH -  Einfuehrung in R"
-
+  Output: Willkommen zum interaktiven R-Kurs der PFH zu Multivariaten Verfahren. In diesem Kapitel erhalten Sie eine Kurzeinführung in R.
+  
 - Class: text
   Output: "Im Folgenden sollen Sie einen Datensatz erzeugen, den Sie in diesem Kurs in Hinblick auf einfache deskriptive Statistiken untersuchen werden."
   
@@ -42,26 +42,26 @@
 
 
 - Class: text
-  Output: "Bevor Daten mit Hilfe verschiedener Verfahren analysiert werden koennen, sollte als erstes ein Ueberblick ueber die Daten gewonnen werden."
+  Output: "Bevor Daten mit Hilfe verschiedener Verfahren analysiert werden können, sollte als erstes ein Überblick über die Daten gewonnen werden."
 
 - Class: cmd_question
-  Output: Ueberpruefen Sie wie viele NAs im Datensatz vorhanden sind. Dazu koennen Sie die Befehle is.na() und sum() verwenden.
+  Output: Überprüfen Sie wie viele NAs im Datensatz vorhanden sind. Dazu können Sie die Befehle is.na() und sum() verwenden.
   CorrectAnswer: sum(is.na(daten))
   AnswerTests: omnitest(correctExpr='sum(is.na(daten))', correctVal= sum(is.na(daten)))
   Hint: Die korrekte Antwort lautet "sum(is.na(daten))"
 
 # Übersicht der Daten
 - Class: cmd_question
-  Output: Verschaffen Sie sich einen Ueberblick ueber den Datenframe "daten" mit dem summary() Befehl.
+  Output: Verschaffen Sie sich einen Überblick über den Datenframe "daten" mit dem summary() Befehl.
   CorrectAnswer: summary(daten)
   AnswerTests: omnitest(correctExpr='summary(daten)', correctVal= summary(daten))
   Hint: Die korrekte Antwort lautet "summary(daten)"
 
 - Class: text
-  Output: "Es folgen einige Verstaendnisfragen zu dem Output des summary() Befehls."
+  Output: "Es folgen einige Verständnisfragen zu dem Output des summary() Befehls."
 
 - Class: mult_question
-  Output: Das durchschnittlche Alter betraegt 25. 
+  Output: Das durchschnittliche Alter beträgt 25. 
   AnswerChoices:  Ja; Nein
   CorrectAnswer:  Nein
   AnswerTests: omnitest(correctVal='Nein')
@@ -75,7 +75,7 @@
   Hint: Die korrekte Antwort lautet "Ja". 
 
 - Class: mult_question
-  Output: Alle Probanden sind volljaehrig. 
+  Output: Alle Probanden sind volljährig. 
   AnswerChoices:  Ja; Nein
   CorrectAnswer:  Ja
   AnswerTests: omnitest(correctVal='Ja')
@@ -85,24 +85,24 @@
   Output: "Neben den sogenannten Lageparameter aus dem summary-Befehl, sind auch Streuungsparameter wie die Varianz von Interesse."
 
 - Class: mult_question
-  Output: Ohne Berechnung laesst sich vermuten, dass folgende Variable eine hoehere Varianz aufweist. 
+  Output: Ohne Berechnung lässt sich vermuten, dass folgende Variable eine höhere Varianz aufweist. 
   AnswerChoices:  alter; einkommen
   CorrectAnswer:  einkommen
   AnswerTests: omnitest(correctVal='einkommen')
   Hint: Die korrekte Antwort lautet "Menschen können kaum älter als 100 Jahre werden, aber sie können mehrere Millionen und mehr verdienen.". 
   
 - Class: cmd_question
-  Output: Ueberpruefen Sie Ihre Vermutung mit einer logischen Abfrage. Fuer den Mittelwert wuerde der Test folgendermassen aussehen. "mean(einkommen)>mean(alter)"
+  Output: Überprüfen Sie Ihre Vermutung mit einer logischen Abfrage. Für den Mittelwert würde der Test folgendermaßen aussehen. "mean(einkommen)>mean(alter)"
   CorrectAnswer: var(einkommen)>var(alter)
   AnswerTests: omnitest(correctExpr='var(einkommen)>var(alter)', correctVal= var(einkommen)>var(alter))
   Hint: Die korrekte Antwort lautet "var(einkommen)>var(alter)"
 
 - Class: text
-  Output: "Zum Abschluss werden Fragen zu den Grundlagen der Datenmanipulation geprueft."
+  Output: "Zum Abschluss werden Fragen zu den Grundlagen der Datenmanipulation geprüft."
 
 # Vektor erstellen
 - Class: mult_question
-  Output: Einen Vektor mit den Zahlen von 1 bis 10 erhalten Sie mit folgendem Befehl. (Bedenken Sie "rep steht fuer repetition, und [-1] entfernt den ersten Eintrag, (seq() und 1:5 sind korrekte Befehle)")
+  Output: Einen Vektor mit den Zahlen von 1 bis 10 erhalten Sie mit folgendem Befehl. (Bedenken Sie "rep steht für repetition, und [-1] entfernt den ersten Eintrag, (seq() und 1:5 sind korrekte Befehle)")
   AnswerChoices:  sec(1,10); 1::10; rep(1, 10); seq(0,10)[-1]
   CorrectAnswer:  seq(0,10)[-1]
   AnswerTests: omnitest(correctVal='seq(0,10)[-1]')
@@ -110,7 +110,7 @@
 
 # Vektor erstellen
 - Class: mult_question
-  Output: Variablen mit unterschiedlicher Laenge koennen nicht,...
+  Output: Variablen mit unterschiedlicher Länge können nicht,...
   AnswerChoices: Zusammengefasst werden in einem Datenframe ; Zusammengefasst werden in einer Matrix;    
   CorrectAnswer:  Zusammengefasst werden in einer Matrix
   AnswerTests: omnitest(correctVal='Zusammengefasst werden in einer Matrix')
@@ -118,6 +118,6 @@
 
 # Zusammenfassung des Kapitels:
 - Class: text
-  Output: "In diesem Kapitel haben Sie gelernt, Vektoren und Datenframes zu erzeugen. Sie haben fehlende Datenpunkte identifiziert und sich mit R-Befehlen sowie logischen Abfragen einen Ueberblick ueber die Daten verschaffen koennen. Sie haben dieses Kapitel nun erfolgreich abgeschlossen."
+  Output: "In diesem Kapitel haben Sie gelernt, Vektoren und Datenframes zu erzeugen. Sie haben fehlende Datenpunkte identifiziert und sich mit R-Befehlen sowie logischen Abfragen einen Überblick über die Daten verschaffen können. Sie haben dieses Kapitel nun erfolgreich abgeschlossen."
 
 

@@ -1,99 +1,99 @@
 - Class: meta
-  Course: PFH - Multivariate Verfahren IV
-  Lesson: Multivariate Verfahren IV
+  Course: Multivariate Verfahren
+  Lesson: Logistische Regression
   Author: PFH
   Type: Standard
-  Organization: Private Hochschule Goettingen
+  Organization: Private Hochschule Göttingen
   Version: 0.1
   
   
-# Begrueßung  
-- Class: text
-  Output: "Willkommen zum fuenften Kapitel des interaktiven R-Kurses der PFH: Logistische Regression."
-
 # Begrüßung  
 - Class: text
-  Output: Oben rechts finden Sie in der Speicheranzeige/Environment einen Datensatz, der einen repraesentativ gezogene Stichprobe von 4181 Personen enthaelt, die an der vom Bundesgesundheitsministerium in Auftrag gegebenen Bundesgesundheitssurvey (1999) teilgenommen haben. Bei dieser Umfrage wurden erstmals  auch auch psychische Stoerungen umfassend und sorgfaeltig erhoben. Im vorliegenden Kurs soll die Fragestellung untersucht werden, ob Personen mit Panikattacken ein erhoehtes Risiko (bzw. genauer gesagt, eine erhoehte Chance) fuer eine Depressive Stoerung haben. Dies soll anhand einer logistischen Regression mit dem Kriterium Depressive Stoerung und dem Praediktor Panikattacke analysiert werden. Als zusaetzliche Praediktoren sollen weitere psychische Stoerungen (irgendeine Angststoerung, Alkoholmissbrauch/-abhaengigkeit) sowie demografische Variablen (Alter, Geschlecht, Schicht, Herkunft aus den alten vs. den neuen Bundeslaendern) in die Untersuchung aufgenommen werden. 
+  Output: Willkommen zum interaktiven R-Kurs der PFH zu Multivariaten Verfahren. In diesem Kapitel geht es um das Verfahren Logistische Regression.
+  
+# Begrüßung  
+- Class: text
+  Output: Oben rechts finden Sie in der Speicheranzeige/Environment einen Datensatz, der einen repräsentativ gezogene Stichprobe von 4181 Personen enthält, die an der vom Bundesgesundheitsministerium in Auftrag gegebenen Bundesgesundheitssurvey (1999) teilgenommen haben. Bei dieser Umfrage wurden erstmals  auch auch psychische Störungen umfassend und sorgfältig erhoben. Im vorliegenden Kurs soll die Fragestellung untersucht werden, ob Personen mit Panikattacken ein erhöhtes Risiko (bzw. genauer gesagt, eine erhöhte Chance) für eine Depressive Störung haben. Dies soll anhand einer logistischen Regression mit dem Kriterium Depressive Störung und dem Prädiktor Panikattacke analysiert werden. Als zusätzliche Prädiktoren sollen weitere psychische Störungen (irgendeine Angststörung, Alkoholmissbrauch/-abhängigkeit) sowie demografische Variablen (Alter, Geschlecht, Schicht, Herkunft aus den alten vs. den neuen Bundesländern) in die Untersuchung aufgenommen werden. 
   
   
   
 - Class: cmd_question
-  Output: Ueberpuefen Sie mit der Funktion str(), ob der Datensatz richtig eingelesen wurde.
+  Output: Überprüfen Sie mit der Funktion str(), ob der Datensatz richtig eingelesen wurde.
   CorrectAnswer: str(daten)
   AnswerTests: omnitest(correctExpr="str(daten)")
   Hint: Geben Sie folgenden Code ein str(daten)
   
 # Überprüfung des Datensatzes II
 - Class: cmd_question
-  Output: Verschaffen Sie sich einen Ueberblick ueber die Daten. Nutzen Sie hierzu den Befehl  summary()!
+  Output: Verschaffen Sie sich einen Überblick über die Daten. Nutzen Sie hierzu den Befehl  summary()!
   CorrectAnswer: summary(daten)
   AnswerTests: omnitest(correctExpr = "summary(daten)")
   Hint: Geben Sie folgenden Code ein str(daten)
 
 # Einfache logistische Regression
 - Class: text
-  Output: Zunaechst soll eine einfache logistische Regression berechnet werden. Die Variable depress (Depressive Verstimmung) dient als abhaengige Variable. Es soll ueberprueft werden, ob Personen, welche an Panikattacken leiden, ein erhoehtes Risiko haben fuer eine Depressive Verstimmung haben. 
+  Output: Zunächst soll eine einfache logistische Regression berechnet werden. Die Variable depress (Depressive Verstimmung) dient als abhängige Variable. Es soll überprüft werden, ob Personen, welche an Panikattacken leiden, ein erhöhtes Risiko haben für eine Depressive Verstimmung haben. 
  
 # Einfache logistische Regression
 - Class: cmd_question
-  Output: Nutzen Sie hierfuer die die Funktion glm(). Spezifizieren Sie  durch den Parameter family = "binomial", das die Funktion eine logistische Regression durchfuehren soll. Weiterhin muessen die ueber data = daten, den verwendeten Datensatz angegeben. Das Modell soll in der Variable "log.simple" gespeichert werden. Die Abhanegige Variable ist "depress" und die unabhaengige Variable ist "pan_att".
+  Output: Nutzen Sie hierfür die die Funktion glm(). Spezifizieren Sie  durch den Parameter family = "binomial", das die Funktion eine logistische Regression durchführen soll. Weiterhin müssen die über data = daten, den verwendeten Datensatz angegeben. Das Modell soll in der Variable "log.simple" gespeichert werden. Die abhängige Variable ist "depress" und die unabhängige Variable ist "pan_att".
   CorrectAnswer: log.simple = glm(depress ~ pan_att, data = daten, family = "binomial")
   AnswerTests: any_of_exprs('log.simple = glm(depress ~ pan_att, data = daten, family = "binomial")', 'log.simple <- glm(depress ~ pan_att, data = daten, family = "binomial")')
   Hint: Die korrekte Antwort lautet log.simple <- glm(depress ~ pan_att, data = daten, family = "binomial")
   
   # Einfache logistische Regression
 - Class: cmd_question
-  Output: Uebergeben Sie das erstellte Modell "log.simple" an die die Funktion summary() um eine Modellzusammenfassung zu erhalten.
+  Output: Übergeben Sie das erstellte Modell "log.simple" an die die Funktion summary() um eine Modellzusammenfassung zu erhalten.
   CorrectAnswer: summary(log.simple)
   AnswerTests: omnitest(correctExpr='summary(log.simple)')
   Hint: Die korrekte Antwort lautet summary(log.simple)
   
 - Class: mult_question
-  Output: Berechnen Sie haendisch aus den gegegeben Modellzusammenfassung die Differenz zwischen dem LogLikelihood-Wert des Vorhersagemodels und des zugehoerigen Nullmodells! Welche Aussage kann auf Grund der Differenz getroffen werden?
-  AnswerChoices: Es kann keine Aussage getroffen werden; Das Nullmodell beschreibt die Daten besser; Das Vorhersagemodell mit dem Praediktor pan_att beschreibt die Daten besser ; Beide Modelle unterscheiden sich nicht
-  CorrectAnswer: Das Vorhersagemodell mit dem Praediktor pan_att beschreibt die Daten besser
-  AnswerTests: omnitest(correctVal= 'Das Vorhersagemodell mit dem Praediktor pan_att beschreibt die Daten besser')
-  Hint: Desto geringer der Loglikelihood-Wert desto besser das Modell.
+  Output: Berechnen Sie händisch aus der gegebenen Modellzusammenfassung die Differenz zwischen dem LogLikelihood-Wert des Vorhersagemodells und des zugehörigen Nullmodells! Welche Aussage kann auf Grund der Differenz getroffen werden?
+  AnswerChoices: Es kann keine Aussage getroffen werden; Das Nullmodell beschreibt die Daten besser; Das Vorhersagemodell mit dem Prädiktor pan_att beschreibt die Daten besser; Beide Modelle unterscheiden sich nicht
+  CorrectAnswer: Das Vorhersagemodell mit dem Prädiktor pan_att beschreibt die Daten besser
+  AnswerTests: omnitest(correctVal= 'Das Vorhersagemodell mit dem Prädiktor pan_att beschreibt die Daten besser')
+  Hint: Desto geringer der LogLikelihood-Wert desto besser das Modell.
 
 
 - Class: cmd_question
-  Output: Uebergeben Sie das erstellte Modell "log.simple" an die die Funktion anova() um zu ueberpruefen, ob die LogLikelihood-Wert des Vorhersagemodell  sich signifikant von  LogLikelihood-Wert des Nullmodells unterscheiden. Legen Sie durch den Parameter `test = "Chisq"` fest, dass die beiden Modelle mit Hilfe eines Chi-Quadrat-Tests verglichen werden.
+  Output: Übergeben Sie das erstellte Modell "log.simple" an die Funktion anova() um zu überprüfen, ob die LogLikelihood-Wert des Vorhersagemodell  sich signifikant von  LogLikelihood-Wert des Nullmodells unterscheiden. Legen Sie durch den Parameter `test = "Chisq"` fest, dass die beiden Modelle mit Hilfe eines Chi-Quadrat-Tests verglichen werden.
   CorrectAnswer: anova(log.simple, test = "Chisq")
   AnswerTests: omnitest(correctExpr='anova(log.simple, test = "Chisq")')
   Hint: Die korrekte Antwort lautet anova(log.simple, test = "Chisq")
   
 - Class: text
-  Output: Um herauszufinden, ob sich die Chance (bzw. Risko), eine depressive Stoerung auszubilden fuer Personen mit Panikattacken von der von Personen ohne Panikattacken unterscheidet, kann der zugehoerige Odds-Ratio-Wert berechnet werden.
+  Output: Um herauszufinden, ob sich die Chance (bzw. Risiko), eine depressive Störung auszubilden für Personen mit Panikattacken von der von Personen ohne Panikattacken unterscheidet, kann der zugehörige Odds-Ratio-Wert berechnet werden.
 
 - Class: cmd_question
-  Output: Uebergeben Sie das erstellte Modell "log.simple" hierfuer zunaechst an die die Funktion coef() und daraufhin (das Ergebnis von coef(log.simple) ) an die Funktion exp() um den Odds-Ratio-Werte zu erhalten.
+  Output: Übergeben Sie das erstellte Modell "log.simple" hierfür zunächst an die die Funktion coef() und daraufhin (das Ergebnis von coef(log.simple) ) an die Funktion exp() um den Odds-Ratio-Werte zu erhalten.
   CorrectAnswer: exp(coef(log.simple))
   AnswerTests: omnitest(correctExpr='exp(coef(log.simple))')
   Hint: Die korrekte Antwort lautet exp(coef(log.simple))
   
   
 - Class: text
-  Output: Im letzten Abschnitt des Kurses soll nun ein multifaktorielles Vorhersagemodell berechnet werden. Hierfuer werden die Praediktoren "pan_att", "angstst", "alkohol", "alter", "sex", "schicht", "west_ost" in das Modell eingebracht.
+  Output: Im letzten Abschnitt des Kurses soll nun ein multifaktorielles Vorhersagemodell berechnet werden. Hierfür werden die Prädiktoren "pan_att", "angstst", "alkohol", "alter", "sex", "schicht", "west_ost" in das Modell eingebracht.
 
 - Class: cmd_question
-  Output: Nutzen Sie hierfuer die Funktion glm(). Spezifizieren Sie  durch den Parameter family = "binomial", dass die Funktion eine logistische Regression durchfuehren soll. Weiterhin muessen die ueber data = daten, den verwendeten Datensatz angegeben. Das Modell soll in der Variable "log.multi" gespeichert werden.
+  Output: Nutzen Sie hierfür die Funktion glm(). Spezifizieren Sie  durch den Parameter family = "binomial", dass die Funktion eine logistische Regression durchführen soll. Weiterhin müssen Sie über data = daten, den verwendeten Datensatz angegeben. Das Modell soll in der Variable "log.multi" gespeichert werden.
   CorrectAnswer: log.multi = glm(depress ~ pan_att + angstst + alkohol + alter + sex + schicht + west_ost, data = daten, family = "binomial")
   AnswerTests: any_of_exprs(correctExpr='log.multi = glm(depress ~ pan_att + angstst + alkohol + alter + sex + schicht + west_ost, data = daten, family = "binomial")', 'log.multi <- glm(depress ~ pan_att + angstst + alkohol + alter + sex + schicht + west_ost, data = daten, family = "binomial")')
   Hint: Die korrekte Antwort lautet log.multi <- glm(depress ~ pan_att + angstst + alkohol + alter + sex + schicht + west_ost, data = daten, family = "binomial")
 
 
 - Class: cmd_question
-  Output: Uebergeben Sie das erstellte Modell "log.multi" an die die Funktion summary() um eine Modellusammenfassung fuer das multifaktorielles Vorhersagemodell zu erhalten.
+  Output: Übergeben Sie das erstellte Modell "log.multi" an die Funktion summary() um eine Modellzusammenfassung für das multifaktorielles Vorhersagemodell zu erhalten.
   CorrectAnswer: summary(log.multi)
   AnswerTests: omnitest(correctExpr='summary(log.multi)')
   Hint: Die korrekte Antwort lautet summary(log.multi)
   
 - Class: mult_question
-  Output: Wie viele der Praediktoren haben einen signifikanten Einfluss auf die Ausbildung einer depressiven Stoerung?
-  AnswerChoices:  2 Praediktoren; 4 Praediktoren; 5 Praediktoren; 7 Praediktoren
-  CorrectAnswer:  4 Praediktoren
+  Output: Wie viele der Prädiktoren haben einen signifikanten Einfluss auf die Ausbildung einer depressiven Störung?
+  AnswerChoices:  2 Prädiktoren; 4 Prädiktoren; 5 Prädiktoren; 7 Prädiktoren
+  CorrectAnswer:  4 Prädiktoren
   AnswerTests: omnitest(correctVal='4')
-  Hint: Ein Hinweis - Die "Sterne" im Ouput von "summary(log.multi)" deuten an, ob ein Einfluss signifikant ist.
+  Hint: Ein Hinweis - Die "Sterne" im Output von "summary(log.multi)" deuten an, ob ein Einfluss signifikant ist.
   
 # Zusammenfassung des Kapitels:
 - Class: text
