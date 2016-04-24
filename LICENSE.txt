@@ -1,0 +1,20 @@
+Copyright 2015 PFH Private Hochschule Göttingen
+
+The content of this course including but not limited to contents of the
+lesson.yaml files enclosed are licensed CC BY-NC-SA 4.0. For more information please
+visit http://creativecommons.org/licenses/by-nc-sa/4.0/
+
+The software contained in this course is subject to the following license:
+
+The programs included in this course are free software: you can redistribute them and/or modify
+them under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+    
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+    
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.

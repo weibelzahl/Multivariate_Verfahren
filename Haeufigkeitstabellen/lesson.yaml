@@ -1,86 +1,82 @@
 - Class: meta
-  Course: PFH - Multivariate Verfahren IV
-  Lesson: Multivariate Verfahren Tabellen
+  Course: Multivariate Verfahren
+  Lesson: Häufigkeitstabellen
   Author: PFH
   Type: Standard
-  Organization: Private Hochschule Goettingen
+  Organization: Private Hochschule Göttingen
   Version: 0.1
   
   
-# Begruessung  
+# Begrüßung  
 - Class: text
-  Output: "Willkommen zum interaktiven R-Kurs der PFH."
+  Output: Willkommen zum interaktiven R-Kurs der PFH zu Multivariaten Verfahren. In diesem Kapitel geht es um das Erstellen von Häufigkeitstabellen.
 
-# Begruessung  
-- Class: text
-  Output: "In diesem Kapitel lernen Sie Haeufigkeitstabellen mit R zu erstellen." 
 
 - Class: text
-  Output: Oben rechts finden Sie in der Speicheranzeige/Environment einen Datensatz. Der Datensatz basiert auf einer Befragung, in der 1440 junge Dresdnerinnen im Alter von 18 bis 24 in Bezug ihrer psychischen Gesundheit befragt wurden. Die Probanden wurden im Abstand von einem Jahr zweimal anhand eines klinischen Interviews u.a. bezueglich Angststoerungen und affektiven Stoerungen befragt.
+  Output: Oben rechts finden Sie in der Speicheranzeige/Environment einen Datensatz. Der Datensatz basiert auf einer Befragung, in der 1440 junge Dresdnerinnen im Alter von 18 bis 24 in Bezug ihrer psychischen Gesundheit befragt wurden. Die Probanden wurden im Abstand von einem Jahr zweimal anhand eines klinischen Interviews u.a. bezüglich Angststörungen und affektiven Störungen befragt.
 
 - Class: cmd_question
-  Output: Verschaffen Sie sich einen Ueberblick ueber die Struktur der Daten. Nutzen Sie dazu den Befehl str(). 
+  Output: Verschaffen Sie sich einen Überblick über die Struktur der Daten. Nutzen Sie dazu den Befehl str(). 
   CorrectAnswer: str(daten)
   AnswerTests: omnitest(correctExpr='str(daten)', correctVal=str(daten))
   Hint: Die korrekte Antwort lautet "str(daten)"
 
 # Tabellen
 - Class: cmd_question
-  Output: Erstellen Sie eine tabellarische Ueberischt der Daten. Hierfuer koennen Sie den Befehl table() verwenden.
+  Output: Erstellen Sie eine tabellarische Übersicht der Daten. Hierfür können Sie den Befehl table() verwenden.
   CorrectAnswer: table(daten)
   AnswerTests: omnitest(correctExpr='table(daten)', correctVal=table(daten))
   Hint: Die korrekte Antwort lautet  "table(daten)"
 
 - Class: mult_question
-  Output: Wieviele Probanden hatten ab dem Alter 18 sowohl Agoraphobie und eine schwere depressive Episode, jedoch weder eine spezifische- noch eine Sozialphobie?
+  Output: Wie viele Probanden hatten ab dem Alter 18 sowohl Agoraphobie und eine schwere depressive Episode, jedoch weder eine spezifische- noch eine Sozialphobie?
   AnswerChoices:  19; 1; 3; 65
   CorrectAnswer:  3
   AnswerTests: omnitest(correctVal='3')
   Hint: Die korrekte Antwort lautet  "3"
 
 - Class: cmd_question
-  Output: Wieviele Probanden gibt es die keine Agoraphobie aber eine schwere depressive Episode ab dem 18ten Lebensjahr hatten? Schauen Sie dazu in die vorletzte Tabelle Ihrer Tabellenuebersicht.
+  Output: Wie viele Probanden gibt es die keine Agoraphobie aber eine schwere depressive Episode ab dem 18ten Lebensjahr hatten? Schauen Sie dazu in die vorletzte Tabelle Ihrer Tabellenübersicht.
   CorrectAnswer:  100
   AnswerTests: omnitest(correctVal='100')
   Hint: Die korrekte Antwort lautet "100"
 
 
 - Class: cmd_question
-  Output: Sie wissen nun, dass es 100 Probanden gibt, die keine Agoraphobie, aber eine schwere depressive Episode ab dem 18ten Lebensjahr hatten. Wie ist die erwartete Hauefigkeit derjenigen, die (von den 100 Probanden) weder eine Sozial- noch eine spezifisch Phobie ab dem 14ten Lebensjahr haben. Die erwarteten Haeufigkeiten beschreiben das anzunehmende Auftreten eines Falls bei unabhaengigen Variablen. Sie errechnen sich aus dem Produkt der Randsummen geteilt durch die Gesamtanzahl der Faelle.  Runden Sie das Ergebnis mit dem Befehl round(, 0) ab.
+  Output: Sie wissen nun, dass es 100 Probanden gibt, die keine Agoraphobie, aber eine schwere depressive Episode ab dem 18ten Lebensjahr hatten. Wie ist die erwartete Häufigkeit derjenigen, die (von den 100 Probanden) weder eine Sozial- noch eine spezifisch Phobie ab dem 14ten Lebensjahr haben. Die erwarteten Häufigkeiten beschreiben das anzunehmende Auftreten eines Falls bei unabhängigen Variablen. Sie errechnen sich aus dem Produkt der Randsummen geteilt durch die Gesamtanzahl der Fälle.  Runden Sie das Ergebnis mit dem Befehl round(, 0) ab.
   CorrectAnswer:  round(76*89/100, 0)
   AnswerTests: omnitest(correctVal='68')
   Hint: Die korrekte Antwort lautet  "round(76*89/100, 0)" 
 
-# Begruessung  
 - Class: text
-  Output: "Um ein Residuum interpretieren zu koennen sollte es standardisiert werden. In der folgenden Aufgabe berechnen Sie ein Residuum bei gegebenden standardisierten Residuum für Beispiel-Zahlen."
+  Output: "Um ein Residuum interpretieren zu können sollte es standardisiert werden. In der folgenden Aufgabe berechnen Sie ein Residuum bei gegebenem standardisierten Residuum für Beispiel-Zahlen."
 
 - Class: mult_question
-  Output: Nehmen wir an, ein standardisiertes Residuum betraegt 12.5. Wie hoch ist das Residuum, wenn die erwartete Anzahl 64 ist? Die Formel ist 12.5 = Residuum/Wurzel(64). 
+  Output: Nehmen wir an, ein standardisiertes Residuum beträgt 12.5. Wie hoch ist das Residuum, wenn die erwartete Anzahl 64 ist? Die Formel ist 12.5 = Residuum/Wurzel(64). 
   AnswerChoices:  1.5; 800; 1.25; 100
   CorrectAnswer:  100
   AnswerTests: omnitest(correctVal='100')
-  Hint: Ein Hinweis "Die umgeformte Formel betraegt 12.5*8 = Residuum"
+  Hint: Ein Hinweis "Die umgeformte Formel beträgt 12.5*8 = Residuum"
 
-# Haeufigkeitstabellen
+# Häufigkeitstabellen
 
 - Class: mult_question
-  Output: Welche Aussage ueber Zeilen- und Spaltensummen ist korrekt?
+  Output: Welche Aussage über Zeilen- und Spaltensummen ist korrekt?
   AnswerChoices:  Die Summe der Spaltensummen entspricht nicht der Summe der Zeilensummen;Die Spaltensummen einer Matrix entsprechen den Zeilensummen der transponierten Matrix;Das Produkt aus der Summe der Spaltensummen und der Anzahl der Beobachtungen ist das arithmetische Mittel;Die Spaltensummen entsprechen Zeilensummen bei asymmetrischen Matrizen
   CorrectAnswer:  Die Spaltensummen einer Matrix entsprechen den Zeilensummen der transponierten Matrix
   AnswerTests: omnitest(correctVal='Die Spaltensummen einer Matrix entsprechen den Zeilensummen der transponierten Matrix')
   Hint: Ein Hinweis "Beim Transponieren werden Spalten und Zeilen ausgetauscht."
 
 - Class: mult_question
-  Output: Welche Aussage ueber Residuen ist korrekt?
-  AnswerChoices:  Standardisierte Residuen koennen mit simpler Subtraktion berechnet werden;Ein grosses Residuum laesst sich als grosser Zusammenhang der Variablen interpretieren;Standardisierte Residuen stehen im Verhaeltnis zur Hoehe der erwarteten Haeufigkeit;Standardisierte Residuen werden mit der Autokorrelationsfunktion berechnet
-  CorrectAnswer:  Standardisierte Residuen stehen im Verhaeltnis zur Hoehe der erwarteten Haeufigkeit
-  AnswerTests: omnitest(correctVal='Standardisierte Residuen stehen im Verhaeltnis zur Hoehe der erwarteten Haeufigkeit')
-  Hint: Ein Hinweis "Standardisierte Residuen sind abhaengig von erwarteten Haeufigkeiten"
+  Output: Welche Aussage über Residuen ist korrekt?
+  AnswerChoices:  Standardisierte Residuen können mit simpler Subtraktion berechnet werden;Ein großes Residuum lässt sich als großer Zusammenhang der Variablen interpretieren;Standardisierte Residuen stehen im Verhältnis zur Höhe der erwarteten Häufigkeit;Standardisierte Residuen werden mit der Autokorrelationsfunktion berechnet
+  CorrectAnswer:  Standardisierte Residuen stehen im Verhältnis zur Höhe der erwarteten Häufigkeit
+  AnswerTests: omnitest(correctVal='Standardisierte Residuen stehen im Verhältnis zur Höhe der erwarteten Häufigkeit')
+  Hint: Ein Hinweis "Standardisierte Residuen sind abhängig von erwarteten Häufigkeiten"
 
 - Class: mult_question
-  Output: Bei intervallskalierte Daten koennen Zusammenhaenge berechnet werden mit,... 
-  AnswerChoices:  Korrelationskoeffizient nach Pearson; Phi-Mass; Cramers-V Mass; gleitende Durchschnitte
+  Output: Bei intervallskalierte Daten können Zusammenhänge berechnet werden mit,... 
+  AnswerChoices:  Korrelationskoeffizient nach Pearson; Phi-Mass; Cramers V Mass; gleitende Durchschnitte
   CorrectAnswer:  Korrelationskoeffizient nach Pearson
   AnswerTests: omnitest(correctVal='Korrelationskoeffizient nach Pearson')
   Hint: Ein Hinweis "Der Korrelationskoeffizient nach Pearson kann bei intervallskalierte Daten eingesetzt werden."
@@ -88,9 +84,3 @@
 # Zusammenfassung des Kapitels: 
 - Class: text
   Output: "In diesem Kapitel haben Sie gelernt, mit Häufigkeitstabellen umzugehen. Nach der Absolvierung des Kurses, sind Sie nun fähig Aussagen über Häufigkeiten zu treffen und Zusammenhangsmaße auf die Häufigkeitstabellen anzuwenden. Sie haben dieses Kapitel nun erfolgreich abgeschlossen." 
-
-
-
-
-
-
