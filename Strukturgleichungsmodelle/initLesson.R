@@ -1,5 +1,6 @@
 # swirl-Motivations-Nachrichten unterdrücken
 options(swirl_is_fun = FALSE)
+options(swirl_language = "german")
 
 if("lavaan" %in% rownames(installed.packages()) == FALSE) {
   print("Installing package: lavaan")
