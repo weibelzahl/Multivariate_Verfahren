@@ -1,7 +1,7 @@
 # swirl-Motivations-Nachrichten unterdrücken
 options(swirl_is_fun = FALSE)
+options(swirl_language = "german")
 
-require("foreign")
 # SPSS-Daten von einer URL einlesen - Warnung kann ignoriert werden. Die Daten werden als Daten-Frame gespeichert.
 
 alter = c(21, 24, 25, 37, 22, 29, 31)
