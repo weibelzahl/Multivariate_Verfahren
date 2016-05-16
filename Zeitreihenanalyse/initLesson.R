@@ -5,12 +5,6 @@ options(swirl_language = "german")
 # clear workspace
 rm(list = ls())
 
-if("foreign" %in% rownames(installed.packages()) == FALSE) {
-  print("Installing package: foreign")
-  install.packages("foreign")
-}
-library("foreign")
-
 # SPSS-Daten von einer URL einlesen - Warnung kann ignoriert werden. Die Daten werden als Daten-Frame gespeichert.
 options(warn = -1)
 if(file.exists(file.path(path.package("swirl"), "Courses","Multivariate_Verfahren", "Zeitreihenanalyse", "07_Schach.sav"))){
@@ -21,7 +15,7 @@ if(file.exists(file.path(path.package("swirl"), "Courses","Multivariate_Verfahre
     trim.factor.names = FALSE)
   daten <- daten$hf
 }else if(!is.integer(try(download.file("http://www.google.de", tempfile(), quiet = TRUE), silent = TRUE))){
-  stop("Dieses Tutorial benoetigt eine funktionierende Internet-Verbindung. Bitte ueberpruefen Sie Ihre Verbindung!")
+  stop("Dieses Tutorial benötigt eine funktionierende Internet-Verbindung. Bitte überprüfen Sie Ihre Verbindung!")
 }else{
   # , encoding = "UTF-8"))
   #, encoding = "native.enc"
