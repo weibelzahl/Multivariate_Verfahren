@@ -10,12 +10,11 @@ if(file.exists(file.path(path.package("swirl"), "Courses","Multivariate_Verfahre
     to.data.frame = TRUE,
     max.value.labels = Inf, 
     trim.factor.names = FALSE)
-}
-else if(!is.integer(try(download.file("http://www.google.de", tempfile(), quiet = TRUE), silent = TRUE))){
+}else if(!is.integer(try(download.file("http://www.google.de", tempfile(), quiet = TRUE), silent = TRUE))){
   stop("Dieses Tutorial benötigt eine funktionierende Internet-Verbindung. Bitte überprüfen Sie Ihre Verbindung!")
 }else{
   daten <- read.spss(
-    "http://www.hogrefe.de/fileadmin/redakteure/hogrefe_de/Psychlehrbuchplus/Multivariate_Verfahren/08_Clusteranalsyse/Arbeitserleben.sav",
+    "https://www3.hogrefe.de/fileadmin/redakteure/hogrefe_de/Psychlehrbuchplus/Multivariate_Verfahren/08_Clusteranalsyse/Arbeitserleben.sav",
     to.data.frame = TRUE,
     max.value.labels = Inf, 
     trim.factor.names = FALSE)
