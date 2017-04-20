@@ -1,6 +1,6 @@
 # swirl-Motivations-Nachrichten unterdrücken
 options(swirl_is_fun = FALSE)
-options(swirl_language = "german")
+options(swirl_language = "german_formal")
 
 # SPSS-Daten von einer URL einlesen - Warnung kann ignoriert werden. Die Daten werden als Daten-Frame gespeichert.
 

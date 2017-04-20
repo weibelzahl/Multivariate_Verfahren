@@ -1,6 +1,6 @@
 # swirl-Motivations-Nachrichten unterdrücken
 options(swirl_is_fun = FALSE)
-options(swirl_language = "german")
+options(swirl_language = "german_formal")
 
 # clear workspace
 rm(list = ls())
@@ -20,7 +20,7 @@ if(file.exists(file.path(path.package("swirl"), "Courses","Multivariate_Verfahre
   # , encoding = "UTF-8"))
   #, encoding = "native.enc"
   daten <- read.spss(
-    "http://www.hogrefe.de/fileadmin/redakteure/hogrefe_de/Psychlehrbuchplus/Multivariate_Verfahren/07_Zeitreihenanalyse/Schach.sav",
+    "https://www3.hogrefe.de/fileadmin/redakteure/hogrefe_de/Psychlehrbuchplus/Multivariate_Verfahren/07_Zeitreihenanalyse/Schach.sav",
     to.data.frame = TRUE,
     max.value.labels = Inf, 
     trim.factor.names = FALSE) 

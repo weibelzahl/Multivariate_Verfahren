@@ -1,6 +1,6 @@
 # swirl-Motivations-Nachrichten unterdrücken
 options(swirl_is_fun = FALSE)
-options(swirl_language = "german")
+options(swirl_language = "german_formal")
 
 # Prohibit warnings messages inside swirl, change encoding to "UTF-8" for german Umlaut
 options(warn=-1)
@@ -17,7 +17,7 @@ if(file.exists(file.path(path.package("swirl"), "Courses","Multivariate_Verfahre
   # SPSS-Daten von einer URL einlesen - Warnung kann ignoriert werden. Die Daten werden als Daten-Frame gespeichert.
 
   daten <- read.spss(
-    "http://www.hogrefe.de/fileadmin/redakteure/hogrefe_de/Psychlehrbuchplus/Multivariate_Verfahren/09_Faktorenanalyse/FABA.sav",
+    "https://www3.hogrefe.de/fileadmin/redakteure/hogrefe_de/Psychlehrbuchplus/Multivariate_Verfahren/09_Faktorenanalyse/FABA.sav",
     to.data.frame = TRUE,
     max.value.labels = Inf, 
     trim.factor.names = FALSE)
