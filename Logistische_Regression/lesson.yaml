@@ -92,7 +92,7 @@
   Output: Wie viele der Prädiktoren haben einen signifikanten Einfluss auf die Ausbildung einer depressiven Störung?
   AnswerChoices:  2 Prädiktoren; 4 Prädiktoren; 5 Prädiktoren; 7 Prädiktoren
   CorrectAnswer:  4 Prädiktoren
-  AnswerTests: omnitest(correctVal='4')
+  AnswerTests: omnitest(correctVal='4 Prädiktoren')
   Hint: Ein Hinweis - Die "Sterne" im Output von "summary(log.multi)" deuten an, ob ein Einfluss signifikant ist.
   
 # Zusammenfassung des Kapitels:
