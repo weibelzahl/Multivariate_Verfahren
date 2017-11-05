@@ -1,10 +1,10 @@
 - Class: meta
   Course: Multivariate Verfahren
   Lesson: Logistische Regression
-  Author: PFH
+  Author: Stephan Weibelzahl
   Type: Standard
-  Organization: Private Hochschule Göttingen
-  Version: 0.1
+  Organization: PFH Private Hochschule Göttingen
+  Version: 0.2
   
   
 # Begrüßung  
@@ -13,9 +13,8 @@
   
 # Begrüßung  
 - Class: text
-  Output: Oben rechts finden Sie in der Speicheranzeige/Environment einen Datensatz, der einen repräsentativ gezogene Stichprobe von 4181 Personen enthält, die an der vom Bundesgesundheitsministerium in Auftrag gegebenen Bundesgesundheitssurvey (1999) teilgenommen haben. Bei dieser Umfrage wurden erstmals  auch auch psychische Störungen umfassend und sorgfältig erhoben. Im vorliegenden Kurs soll die Fragestellung untersucht werden, ob Personen mit Panikattacken ein erhöhtes Risiko (bzw. genauer gesagt, eine erhöhte Chance) für eine Depressive Störung haben. Dies soll anhand einer logistischen Regression mit dem Kriterium Depressive Störung und dem Prädiktor Panikattacke analysiert werden. Als zusätzliche Prädiktoren sollen weitere psychische Störungen (irgendeine Angststörung, Alkoholmissbrauch/-abhängigkeit) sowie demografische Variablen (Alter, Geschlecht, Schicht, Herkunft aus den alten vs. den neuen Bundesländern) in die Untersuchung aufgenommen werden. 
-  
-  
+  Output: Oben rechts finden Sie in der Speicheranzeige/Environment einen Datensatz, der einen repräsentativ gezogene Stichprobe von 4181 Personen enthält, die an der vom Bundesgesundheitsministerium in Auftrag gegebenen Bundesgesundheitssurvey (1999) teilgenommen haben. Bei dieser Umfrage wurden erstmals auch psychische Störungen umfassend und sorgfältig erhoben. In diesem Kapitel soll die Fragestellung untersucht werden, ob Personen mit Panikattacken ein erhöhtes Risiko (bzw. genauer gesagt, eine erhöhte Chance) für eine Depressive Störung haben. Dies soll anhand einer logistischen Regression mit dem Kriterium Depressive Störung und dem Prädiktor Panikattacke analysiert werden. Als zusätzliche Prädiktoren sollen weitere psychische Störungen (irgendeine Angststörung, Alkoholmissbrauch/-abhängigkeit) sowie demografische Variablen (Alter, Geschlecht, Schicht, Herkunft aus den alten vs. den neuen Bundesländern) in die Untersuchung aufgenommen werden. 
+
   
 - Class: cmd_question
   Output: Überprüfen Sie mit der Funktion str(), ob der Datensatz richtig eingelesen wurde.
@@ -32,7 +31,7 @@
 
 # Einfache logistische Regression
 - Class: text
-  Output: Zunächst soll eine einfache logistische Regression berechnet werden. Die Variable depress (Depressive Verstimmung) dient als abhängige Variable. Es soll überprüft werden, ob Personen, welche an Panikattacken leiden, ein erhöhtes Risiko haben für eine Depressive Verstimmung haben. 
+  Output: Zunächst soll eine einfache logistische Regression berechnet werden. Die Variable depress (Depressive Verstimmung) dient als abhängige Variable. Es soll überprüft werden, ob Personen, welche an Panikattacken leiden, ein erhöhtes Risiko für eine Depressive Verstimmung haben. 
  
 # Einfache logistische Regression
 - Class: cmd_question
@@ -66,7 +65,7 @@
   Output: Um herauszufinden, ob sich die Chance (bzw. Risiko), eine depressive Störung auszubilden für Personen mit Panikattacken von der von Personen ohne Panikattacken unterscheidet, kann der zugehörige Odds-Ratio-Wert berechnet werden.
 
 - Class: cmd_question
-  Output: Übergeben Sie das erstellte Modell "log.simple" hierfür zunächst an die die Funktion coef() und daraufhin (das Ergebnis von coef(log.simple) ) an die Funktion exp() um den Odds-Ratio-Werte zu erhalten.
+  Output: Übergeben Sie das erstellte Modell "log.simple" hierfür zunächst an die Funktion coef() und daraufhin (das Ergebnis von coef(log.simple) ) an die Funktion exp() um den Odds-Ratio-Werte zu erhalten.
   CorrectAnswer: exp(coef(log.simple))
   AnswerTests: omnitest(correctExpr='exp(coef(log.simple))')
   Hint: Die korrekte Antwort lautet exp(coef(log.simple))
@@ -92,7 +91,7 @@
   Output: Wie viele der Prädiktoren haben einen signifikanten Einfluss auf die Ausbildung einer depressiven Störung?
   AnswerChoices:  2 Prädiktoren; 4 Prädiktoren; 5 Prädiktoren; 7 Prädiktoren
   CorrectAnswer:  4 Prädiktoren
-  AnswerTests: omnitest(correctVal='4')
+  AnswerTests: omnitest(correctVal='4 Prädiktoren')
   Hint: Ein Hinweis - Die "Sterne" im Output von "summary(log.multi)" deuten an, ob ein Einfluss signifikant ist.
   
 # Zusammenfassung des Kapitels:

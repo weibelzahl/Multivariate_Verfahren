@@ -1,10 +1,10 @@
 - Class: meta
   Course: Multivariate Verfahren
   Lesson: Faktorenanalyse
-  Author: PFH
+  Author: Stephan Weibelzahl
   Type: Standard
-  Organization: Private Hochschule Göttingen
-  Version: 0.1
+  Organization: PFH Private Hochschule Göttingen
+  Version: 0.2
     
 # Begrüßung   
 - Class: text
@@ -37,6 +37,19 @@
   Hint: Die korrekte Antwort lautet "daten.clean = na.omit(daten.auswahl)"
 
 
+- Class: cmd_question
+  Output: Verschaffen Sie sich einen Überblick dieses bereinigten Datensatzes mit dem Befehl str().
+  CorrectAnswer: str(daten.clean)
+  AnswerTests: any_of_exprs('str(daten.clean)', 'str(daten.clean)')
+  Hint: Die korrekte Antwort lautet "str(daten.clean)"
+
+- Class: cmd_question
+  Output: Die Variablen haben jeweils auch noch eigene Beschriftungen (labels). Diese sind in R Studio im Data Viewer sichtbar. Das Attribut label einer Variable kann mit dem Befehl attr(variable, "label") ausgegeben werden. Lassen Sie sich das Label der Variable faba2 anzeigen.
+  CorrectAnswer: attr(daten$faba2, "label")
+  AnswerTests: omnitest(correctExpr='attr(daten$faba2, "label")')
+  Hint: Die korrekte Antwort lautet "attr(daten$faba2, "label")"
+
+
 # Sub daten.auswahl
 - Class: cmd_question
   Output: Berechnen Sie die Korrelationsmatrix des Datensatzes "daten.clean"
@@ -45,7 +58,7 @@
   Hint: Die korrekte Antwort lautet "cor(daten.clean)"
 
 - Class: mult_question
-  Output: Wie hoch ist die Korrelation zwischen den Variablen "will besser als andere sein" und "organisiere mein Leben" auf zwei Nachkommastellen?
+  Output: Wie hoch ist die Korrelation zwischen den Variablen "will besser als andere sein" (faba2) und "organisiere mein Leben" (faba10) auf zwei Nachkommastellen?
   AnswerChoices:  0.008; 0.09; 0.07; 0.19
   CorrectAnswer:  0.09
   AnswerTests: omnitest(correctVal='0.09')
@@ -53,7 +66,7 @@
   
 
 - Class: mult_question
-  Output: Wie hoch ist die Korrelation zwischen den Variablen "organisiere mein Leben" und "organisiere mein Leben" auf zwei Nachkommastellen?
+  Output: Wie hoch ist die Korrelation zwischen den Variablen "organisiere mein Leben" (faba10) und "organisiere mein Leben" (faba10) auf zwei Nachkommastellen?
   AnswerChoices:  -1.00; 0.09; 0.00; 1.00
   CorrectAnswer:  1.00
   AnswerTests: omnitest(correctVal='1.00')
@@ -89,8 +102,12 @@
   AnswerTests: omnitest(correctVal='4')
   Hint: Achten Sie auf den Hinweis in der Konsole, welcher durch die die Funktion fa.parallel ausgegeben wird.
 
-
-
+- Class: mult_question
+  Output: Wie lautet der Befehl für die Hauptkomponentenanalyse?
+  AnswerChoices:  hk(); principal(); components(); fa()
+  CorrectAnswer:  principal()
+  AnswerTests: omnitest(correctVal='principal()')
+  Hint: Der Befehl leitet sich aus dem Begriff "principal component analysis" ab.
 
 
 # Sub daten.auswahl
@@ -105,18 +122,18 @@
 
 - Class: mult_question
   Output: Die Faktorenanalyse...
-  AnswerChoices:  ...reduziert die Datendimension ohne Informationen zu verlieren; ...macht bei großen Datensätzen keinen Sinn; ...rotiert die Daten bevor sie extrahiert werden; ...wird benutzt um den Datensatz mit möglichst wenig Dimensionen ausreichend darzustellen
-  CorrectAnswer:  ...wird benutzt um den Datensatz mit möglichst wenig Dimensionen ausreichend darzustellen
-  AnswerTests: omnitest(correctVal='...wird benutzt um den Datensatz mit möglichst wenig Dimensionen ausreichend darzustellen')
-  Hint: Ein Hinweis "Bei der Faktorenanalyse soll der Datenumfang reduziert werden, ohne relevante Informationen zu verlieren"
+  AnswerChoices:  ...reduziert die Datendimension ohne Informationen zu verlieren; ...macht bei großen Datensätzen keinen Sinn; ...rotiert die Daten bevor sie extrahiert werden; ...wird benutzt, um den Datensatz mit möglichst wenig Dimensionen ausreichend darzustellen
+  CorrectAnswer:  ...wird benutzt, um den Datensatz mit möglichst wenig Dimensionen ausreichend darzustellen
+  AnswerTests: omnitest(correctVal='...wird benutzt, um den Datensatz mit möglichst wenig Dimensionen ausreichend darzustellen')
+  Hint: "Ein Hinweis: Bei der Faktorenanalyse soll der Datenumfang reduziert werden, ohne relevante Informationen zu verlieren."
 
 
 - Class: mult_question
   Output: Die Korrelationsmatrix...
-  AnswerChoices:  ...ist asymmetrisch; ...auf der Diagonalen sind Nullen, ...da eine Variable nicht mit sich selbst korreliert sein kann; kann auch auf alle Werte unterhalb der Diagonalen reduziert werden ohne Informationen zu verlieren; ...ist unabhängig von den Kovarianzen
+  AnswerChoices:  ...ist asymmetrisch; ...enthält Nullen auf der Diagonalen, da eine Variable nicht mit sich selbst korreliert sein kann;...kann auch auf alle Werte unterhalb der Diagonalen reduziert werden ohne Informationen zu verlieren; ...ist unabhängig von den Kovarianzen
   CorrectAnswer:  ...kann auch auf alle Werte unterhalb der Diagonalen reduziert werden ohne Informationen zu verlieren
-  AnswerTests: omnitest(correctVal='kann auch auf alle Werte unterhalb der Diagonalen reduziert werden ohne Informationen zu verlieren')
-  Hint: Ein Hinweis "Die Korrelationsmatrix ist symmetrisch""
+  AnswerTests: omnitest(correctVal='...kann auch auf alle Werte unterhalb der Diagonalen reduziert werden ohne Informationen zu verlieren')
+  Hint: "Ein Hinweis: Die Korrelationsmatrix ist symmetrisch und zeigt die paarweisen Korrelationen aller Variablen untereinander."
 
 
 # Zusammenfassung des Kapitels: 

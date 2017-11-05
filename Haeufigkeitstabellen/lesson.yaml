@@ -1,10 +1,10 @@
 - Class: meta
   Course: Multivariate Verfahren
   Lesson: Häufigkeitstabellen
-  Author: PFH
+  Author: Stephan Weibelzahl
   Type: Standard
-  Organization: Private Hochschule Göttingen
-  Version: 0.1
+  Organization: PFH Private Hochschule Göttingen
+  Version: 0.2
   
   
 # Begrüßung  
@@ -19,44 +19,60 @@
   Output: Verschaffen Sie sich einen Überblick über die Struktur der Daten. Nutzen Sie dazu den Befehl str(). 
   CorrectAnswer: str(daten)
   AnswerTests: omnitest(correctExpr='str(daten)', correctVal=str(daten))
-  Hint: Die korrekte Antwort lautet "str(daten)"
+  Hint: Die korrekte Antwort lautet "str(daten)".
 
 # Tabellen
 - Class: cmd_question
   Output: Erstellen Sie eine tabellarische Übersicht der Daten. Hierfür können Sie den Befehl table() verwenden.
   CorrectAnswer: table(daten)
   AnswerTests: omnitest(correctExpr='table(daten)', correctVal=table(daten))
-  Hint: Die korrekte Antwort lautet  "table(daten)"
+  Hint: Die korrekte Antwort lautet "table(daten)".
 
 - Class: mult_question
   Output: Wie viele Probanden hatten ab dem Alter 18 sowohl Agoraphobie und eine schwere depressive Episode, jedoch weder eine spezifische- noch eine Sozialphobie?
   AnswerChoices:  19; 1; 3; 65
   CorrectAnswer:  3
   AnswerTests: omnitest(correctVal='3')
-  Hint: Die korrekte Antwort lautet  "3"
-
-- Class: cmd_question
-  Output: Wie viele Probanden gibt es die keine Agoraphobie aber eine schwere depressive Episode ab dem 18ten Lebensjahr hatten? Schauen Sie dazu in die vorletzte Tabelle Ihrer Tabellenübersicht.
-  CorrectAnswer:  100
-  AnswerTests: omnitest(correctVal='100')
-  Hint: Die korrekte Antwort lautet "100"
-
-
-- Class: cmd_question
-  Output: Sie wissen nun, dass es 100 Probanden gibt, die keine Agoraphobie, aber eine schwere depressive Episode ab dem 18ten Lebensjahr hatten. Wie ist die erwartete Häufigkeit derjenigen, die (von den 100 Probanden) weder eine Sozial- noch eine spezifisch Phobie ab dem 14ten Lebensjahr haben. Die erwarteten Häufigkeiten beschreiben das anzunehmende Auftreten eines Falls bei unabhängigen Variablen. Sie errechnen sich aus dem Produkt der Randsummen geteilt durch die Gesamtanzahl der Fälle.  Runden Sie das Ergebnis mit dem Befehl round(, 0) ab.
-  CorrectAnswer:  round(76*89/100, 0)
-  AnswerTests: omnitest(correctVal='68')
-  Hint: Die korrekte Antwort lautet  "round(76*89/100, 0)" 
+  Hint: "Die korrekte Antwort ist in der letzten Tabelle zu finden: 3"
 
 - Class: text
-  Output: "Um ein Residuum interpretieren zu können sollte es standardisiert werden. In der folgenden Aufgabe berechnen Sie ein Residuum bei gegebenem standardisierten Residuum für Beispiel-Zahlen."
+  Output: Neben den multidimensionalen Häufigkeitstabellen für alle vier Variablen, wie wir sie hier verwendet haben, kann man mit dem table() Befehl natürlich auch Kontingenztabellen für zwei Variablen erstellen.
+
+- Class: cmd_question
+  Output: Erstellen Sie eine Kontingenztabelle für den Zusammenhang zwischen 'Sozialphobie bis 14 Jahre' (sozipb14) und 'Agoraphobie ab 18 Jahre' (agorpa18).
+  CorrectAnswer:  table(daten$sozpb14, daten$agorpa18)
+  AnswerTests: omnitest(correctVal='table(daten$sozpb14, daten$agorpa18)')
+  Hint: "Übergeben Sie dem Befehl table() die beiden Variablen als Argumente: table(daten$sozpb14, daten$agorpa18)."
+
+- Class: mult_question
+  Output: Als nächstes wollen wir wissen, ob es einen signifikanten Zusammenhang zwischen diesen Variablen gibt. Welches Verfahren ist dafür geeignet?
+  AnswerChoices:  Pearson Chi-Quadrat Test; Pearson Produkt-Moment-Korrelation; Spearman Rang-Korrelation; Kendalls Tau b
+  CorrectAnswer:  Pearson Chi-Quadrat Test
+  AnswerTests: omnitest(correctVal='Pearson Chi-Quadrat Test')
+  Hint: "Wir suchen den Zusammenhang zwischen zwei nominalskalierten Variablen."
+
+- Class: cmd_question
+  Output: Wenden Sie für die Berechnung des Zusammenhangs den Befehl chisq.test() auf beiden Variablen an.
+  CorrectAnswer:  chisq.test(daten$sozpb14, daten$agorpa18)
+  AnswerTests: omnitest(correctVal='chisq.test(daten$sozpb14, daten$agorpa18)')
+  Hint: Übergeben Sie die beiden Variablen daten$sozpb14 und daten$agorpa18 an den Befehl chisq.test().
+
+- Class: mult_question
+  Output: Gibt es nach diesen Daten einen übeerzufälligen Zusammenhang zwischen dem Auftreten einer Sozialphobie bis 14 Jahre und einer Agoraphobie ab 18 Jahre?
+  AnswerChoices:  Ja; Nein
+  CorrectAnswer:  Ja
+  AnswerTests: omnitest(correctVal='Ja')
+  Hint: Achten Sie auf den angegebenen p-Wert, also die Wahrscheinlichkeit der Stichprobe unter der Annahme der Nullhypothese.
+
+- Class: text
+  Output: "Anderes Thema: Um ein Residuum interpretieren zu können sollte es standardisiert werden. In der folgenden Aufgabe berechnen Sie ein Residuum bei gegebenem standardisierten Residuum für Beispiel-Zahlen."
 
 - Class: mult_question
   Output: Nehmen wir an, ein standardisiertes Residuum beträgt 12.5. Wie hoch ist das Residuum, wenn die erwartete Anzahl 64 ist? Die Formel ist 12.5 = Residuum/Wurzel(64). 
   AnswerChoices:  1.5; 800; 1.25; 100
   CorrectAnswer:  100
   AnswerTests: omnitest(correctVal='100')
-  Hint: Ein Hinweis "Die umgeformte Formel beträgt 12.5*8 = Residuum"
+  Hint: "Ein Hinweis: Die umgeformte Formel beträgt 12.5*8 = Residuum"
 
 # Häufigkeitstabellen
 
@@ -65,21 +81,21 @@
   AnswerChoices:  Die Summe der Spaltensummen entspricht nicht der Summe der Zeilensummen;Die Spaltensummen einer Matrix entsprechen den Zeilensummen der transponierten Matrix;Das Produkt aus der Summe der Spaltensummen und der Anzahl der Beobachtungen ist das arithmetische Mittel;Die Spaltensummen entsprechen Zeilensummen bei asymmetrischen Matrizen
   CorrectAnswer:  Die Spaltensummen einer Matrix entsprechen den Zeilensummen der transponierten Matrix
   AnswerTests: omnitest(correctVal='Die Spaltensummen einer Matrix entsprechen den Zeilensummen der transponierten Matrix')
-  Hint: Ein Hinweis "Beim Transponieren werden Spalten und Zeilen ausgetauscht."
+  Hint: "Ein Hinweis: Beim Transponieren werden Spalten und Zeilen ausgetauscht."
 
 - Class: mult_question
   Output: Welche Aussage über Residuen ist korrekt?
   AnswerChoices:  Standardisierte Residuen können mit simpler Subtraktion berechnet werden;Ein großes Residuum lässt sich als großer Zusammenhang der Variablen interpretieren;Standardisierte Residuen stehen im Verhältnis zur Höhe der erwarteten Häufigkeit;Standardisierte Residuen werden mit der Autokorrelationsfunktion berechnet
   CorrectAnswer:  Standardisierte Residuen stehen im Verhältnis zur Höhe der erwarteten Häufigkeit
   AnswerTests: omnitest(correctVal='Standardisierte Residuen stehen im Verhältnis zur Höhe der erwarteten Häufigkeit')
-  Hint: Ein Hinweis "Standardisierte Residuen sind abhängig von erwarteten Häufigkeiten"
+  Hint: "Ein Hinweis: Standardisierte Residuen sind abhängig von erwarteten Häufigkeiten."
 
 - Class: mult_question
-  Output: Bei intervallskalierte Daten können Zusammenhänge berechnet werden mit,... 
-  AnswerChoices:  Korrelationskoeffizient nach Pearson; Phi-Mass; Cramers V Mass; gleitende Durchschnitte
+  Output: Mit welchem statistischen Maß können bei intervallskalierte Daten Zusammenhänge berechnet werden?
+  AnswerChoices:  Korrelationskoeffizient nach Pearson; Phi-Maß; Cramers V Maß; gleitender Durchschnitt
   CorrectAnswer:  Korrelationskoeffizient nach Pearson
   AnswerTests: omnitest(correctVal='Korrelationskoeffizient nach Pearson')
-  Hint: Ein Hinweis "Der Korrelationskoeffizient nach Pearson kann bei intervallskalierte Daten eingesetzt werden."
+  Hint: "Ein Hinweis: Der Korrelationskoeffizient nach Pearson kann bei intervallskalierte Daten eingesetzt werden."
  
 # Zusammenfassung des Kapitels: 
 - Class: text
