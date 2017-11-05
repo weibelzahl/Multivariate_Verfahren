@@ -1,10 +1,10 @@
 - Class: meta
   Course: Multivariate Verfahren
   Lesson: Varianzanalyse
-  Author: PFH
+  Author: Stephan Weibelzahl
   Type: Standard
-  Organization: Private Hochschule Göttingen
-  Version: 0.1
+  Organization: PFH Private Hochschule Göttingen
+  Version: 0.2
   
   
 # Begrüßung  
@@ -44,7 +44,7 @@
 
 # Inferenzstatistik
 - Class: text
-  Output: Es soll nun untersucht werden, ob die Valenz abhängig von der Diagnose verschieden ist. Dazu wird zunächst getestet ob die Variable "valpos" (steht für Valenz Positiv) im Mittel verschieden ist für Probanden mit und ohne PTSD.
+  Output: Es soll nun untersucht werden, ob die Valenz abhängig von der Diagnose verschieden ist. Dazu wird zunächst getestet, ob die Variable "valpos" (steht für Valenz Positiv) im Mittel verschieden ist für Probanden mit und ohne PTSD.
   
 # Inferenzstatistik
 - Class: cmd_question
@@ -59,11 +59,11 @@
   AnswerChoices:  Ja, 9 Werte fehlen; Ja, 90.50 Werte fehlen; Nein;
   CorrectAnswer:  Ja, 9 Werte fehlen
   AnswerTests: omnitest(correctVal='Ja, 9 Werte fehlen')
-  Hint: In R werden fehlende Werte als NA's bezeichnet. 
+  Hint: In R werden fehlende Werte als NA's (not available) bezeichnet. 
   
 # Fehlende Werte
 - Class: text
-  Output: Eine Varianzanalyse mit fehlenden Werten ist mit Hilfe des Befehls ezANOVA() nicht möglich. Im Vorfeld muss entweder eine Imputation von Werten, oder ein Ausschluss der fehlenden Fälle stattfinden.
+  Output: Wir wollen für die Varianzanalyse mit dem Befehl ezANOVA() arbeiten. Leider kann dieser Befehl nichts mit fehlenden Werten anfangen. Im Vorfeld muss entweder eine Imputation oder ein Ausschluss der fehlenden Fälle stattfinden.
   
 # Fehlender Werte
 - Class: cmd_question
@@ -85,7 +85,7 @@
   
 # Inferenzstatistik
 - Class: cmd_question
-  Output: Untersuchen Sie mit Hilfe der Funktion ezANOVA() ob ein signifikanter Unterschied zwischen den Gruppen PTSD und kein PTSD hinsichtlich der Variable "valpos" besteht. Nehmen Sie dazu die Variable "valpos" als abhängige Variable und die Gruppierungsvariable "ptsd" als between Faktor. Die Probandennummer ist in der Variable "pb" gespeichert. Als Daten verwenden Sie "daten.complete".
+  Output: Untersuchen Sie mit Hilfe der Funktion ezANOVA(), ob ein signifikanter Unterschied zwischen den Gruppen PTSD und kein PTSD hinsichtlich der Variable "valpos" besteht. Nehmen Sie dazu die Variable "valpos" als abhängige Variable und die Gruppierungsvariable "ptsd" als between Faktor. Die Probandennummer ist in der Variable "pb" gespeichert. Als Daten verwenden Sie "daten.complete".
   CorrectAnswer: ezANOVA(dv = valpos, between = ptsd, wid = pb, data = daten.complete)
   AnswerTests: omnitest(correctVal='ezANOVA(dv = valpos, between = ptsd, wid = pb, data = daten.complete)')
   Hint: Geben Sie folgenden Code ein ezANOVA(dv = valpos, between = ptsd, wid = pb, data = daten.complete)
@@ -96,7 +96,7 @@
   AnswerChoices:  Ja, der F-Wert ist besonders klein; Ja, der p-Wert ist kleiner als 0.05; Nein, der p-Wert ist grösser als 0.05; Nein, der F-Wert ist besonders hoch;
   CorrectAnswer:  Nein, der p-Wert ist grösser als 0.05
   AnswerTests: omnitest(correctVal='Nein, der p-Wert ist grösser als 0.05')
-  Hint: Der Unterschied ist nicht signifikant da der p-Wert grösser als 0.05 ist.
+  Hint: Der Unterschied ist nicht signifikant, da der p-Wert grösser als 0.05 ist.
 
 # Fehlende Werte
 - Class: text
@@ -129,7 +129,7 @@
   
 # Inferenzstatistik
 - Class: cmd_question
-  Output: Untersuchen Sie mit Hilfe der Funktion ezANOVA() ob hinsichtlich der Valenz ein Unterschied zwischen den Probanden mit PTSD und gesunden Probanden besteht. Nehmen Sie dazu als within Faktor die Variable "valenz" und als abhängige Variable "wert". 
+  Output: Untersuchen Sie mit Hilfe der Funktion ezANOVA(), ob hinsichtlich der Valenz ein Unterschied zwischen den Probanden mit PTSD und gesunden Probanden besteht. Nehmen Sie dazu als within Faktor die Variable "valenz" und als abhängige Variable "wert". 
   CorrectAnswer: ezANOVA(dv = wert, between = ptsd, wid = pb, within = valenz, data = daten.complete.long)
   AnswerTests: omnitest(correctVal='ezANOVA(dv = wert, between = ptsd, wid = pb, within = valenz, data = daten.complete.long)')
   Hint: Geben Sie folgenden Code ein ezANOVA(dv = wert, between = ptsd, wid = pb, within = valenz, data = daten.complete.long)
@@ -152,15 +152,15 @@
 
 # Inferenzstatistik  
 - Class: mult_question
-  Output: Mauchly's Test auf Sphärizität war signifikant und die Sphärizitätsannahme nicht damit nicht erfüllt. Ein möglicher Grund ist...
+  Output: Mauchly's Test auf Sphärizität war signifikant und die Sphärizitätsannahme damit nicht erfüllt. Ein möglicher Grund ist...
   AnswerChoices:  die Varianzen der verschiedenen Valenzarten sind unterschiedlich; die Varianzen der verschiedenen Valenzarten sind gleich; die Mittelwerte der verschiedenen Valenzarten sind unterschiedlich; die Mittelwerte der verschiedenen Valenzarten sind gleich;
   CorrectAnswer:  die Varianzen der verschiedenen Valenzarten sind unterschiedlich
   AnswerTests: omnitest(correctVal='die Varianzen der verschiedenen Valenzarten sind unterschiedlich')
-  Hint: Sind die Varianzen der Valenzarten verschieden führt dies zu einer signifikanten Sphärizität.
+  Hint: Sind die Varianzen der Valenzarten verschieden, führt dies zu einer signifikanten Sphärizität.
 
 # Inferenzstatistik  
 - Class: mult_question
-  Output: Wenn die Sphärizitätsannahme nicht erfüllt ist sollte man...
+  Output: "Wenn die Sphärizitätsannahme nicht erfüllt,ist sollte man ..."
   AnswerChoices:  auf die Varianzanalyse als Auswertungsmethode verzichten; die Teststatistik von Huynh-Feldt oder Greenhouse-Geiser verwenden; den Kolmogorov-Smirnov Test im Vorfeld durchführen; die Werte zunächst standardisieren;
   CorrectAnswer:  die Teststatistik von Huynh-Feldt oder Greenhouse-Geiser verwenden
   AnswerTests: omnitest(correctVal='die Teststatistik von Huynh-Feldt oder Greenhouse-Geiser verwenden')

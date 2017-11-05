@@ -1,9 +1,9 @@
 - Class: meta
   Course: Multivariate Verfahren
   Lesson: Strukturgleichungsmodelle
-  Author: PFH
+  Author: Stephan Weibelzahl
   Type: Standard
-  Organization: Private Hochschule Göttingen
+  Organization: PFH Private Hochschule Göttingen
   Version: 0.2
   
   
@@ -14,31 +14,31 @@
   
 # Begrüßung  
 - Class: text
-  Output: Oben rechts finden Sie in der Speicheranzeige/Environment einen Datensatz , welcher die Daten von 198 Teilnehmerinnen eines Forschungsprojekts enthält. Im Rahmen dieses Projekts wurden Dresdner Frauen im Alter von 40 bis 60 Jahren untersucht. Dabei wurde eine große Anzahl medizinischer wie psychologischer Risiko- und Schutzfaktoren bezüglich Herzkreislauferkrankungen erhoben. Ziel war u.a. die Suche nach Schutzfaktoren, die das kardiovaskuläre Risiko vermindern. Im vorliegenden Swirl-Kurs soll mittels Strukturgleichungsmodellen untersucht werden, inwieweit sich Belastungen im Alltag und im Beruf auf das Befinden der Frauen im mittleren Lebensalter auswirken. 
+  Output: Oben rechts finden Sie in der Speicheranzeige/Environment einen Datensatz, welcher die Daten von 198 Teilnehmerinnen eines Forschungsprojekts enthält. Im Rahmen dieses Projekts wurden Dresdner Frauen im Alter von 40 bis 60 Jahren untersucht. Dabei wurde eine große Anzahl medizinischer wie psychologischer Risiko- und Schutzfaktoren bezüglich Herzkreislauferkrankungen erhoben. Ziel war u.a. die Suche nach Schutzfaktoren, die das kardiovaskuläre Risiko vermindern. Im vorliegenden Swirl-Kurs soll mittels Strukturgleichungsmodellen untersucht werden, inwieweit sich Belastungen im Alltag und im Beruf auf das Befinden der Frauen im mittleren Lebensalter auswirken. 
 
 # Überprüfung des Datensatzes I
 - Class: cmd_question
   Output: Überprüfen Sie mit der Funktion str(), ob der Datensatz richtig eingelesen wurde.
   CorrectAnswer: str(daten)
   AnswerTests: omnitest(correctExpr="str(daten)")
-  Hint: Geben Sie folgenden Code ein str(daten)
+  Hint: "Geben Sie folgenden Code ein: str(daten)"
   
 # Überprüfung des Datensatzes II
 - Class: cmd_question
   Output: Bei der Erstellung von Strukturgleichungsmodellen bietet es sich an, mit z-standardisierten Variablen zu arbeiten. Überprüfen Sie mit der Funktion summary(), ob dies der Fall ist.
   CorrectAnswer: summary(daten)
   AnswerTests: omnitest(correctExpr = "summary(daten)")
-  Hint: Geben Sie folgenden Code ein str(daten)
+  Hint: "Geben Sie folgenden Code ein: summary(daten)" 
 
 - Class: mult_question
   Output: Sind die Variablen z-standardisiert?
   AnswerChoices:  Nein - die Variable pb hat einen sehr hohen Mittelwert; Ja - der Mittelwert ist für alle relevanten Variablen 0; Nein - der Median ist ungleich 0; Ja - das Maximum liegt bei allen Variablen unter 5
   CorrectAnswer:  Ja - der Mittelwert ist für alle relevanten Variablen 0
   AnswerTests: omnitest(correctVal='Ja - der Mittelwert ist für alle relevanten Variablen 0')
-  Hint: Überprüfen Sie ob der Mittelwert gleich Null ist.
+  Hint: Überprüfen Sie, ob der Mittelwert gleich Null ist.
   
 - Class: mult_question
-  Output: Eine Korrelation zwischen den Variablen A und B kann inhaltlich folgendermaßen interpretiert werden...
+  Output: "Strukturgleichungsmodelle beruhen unter anderem auf Korrelationen. Welche der folgenden Aussagen zu Korrelationen ist richtig: Eine Korrelation zwischen den Variablen A und B kann inhaltlich interpretiert werden als ..."
   AnswerChoices:  A ist Ursache für B; B ist Ursache für A; A und B beeinflussen sich gegenseitig; A und B werden durch die Variable C beeinflusst; Keine Antwort ist richtig; Alle Antworten sind richtig
   CorrectAnswer:  Alle Antworten sind richtig
   AnswerTests: omnitest(correctVal='Alle Antworten sind richtig')
@@ -49,13 +49,13 @@
   AnswerChoices:  Die Beschreibung der Versuchsanordnung eines psychologischen Experiments; Die Darstellung der Verknüpfung zwischen latenten Variablen; Die Darstellung der Verknüpfung zwischen latenter Variable und ihren (manifesten) Indikatoren; Keine der Definition ist richtig
   CorrectAnswer:  Die Darstellung der Verknüpfung zwischen latenter Variable und ihren (manifesten) Indikatoren
   AnswerTests: omnitest(correctVal='Die Darstellung der Verknüpfung zwischen latenter Variable und ihren (manifesten) Indikatoren')
-  Hint: Können Sie eine Antwort als eindeutig falsch identifizieren?  
+  Hint: Das Messmodell beschreibt wie die latenten Variablen mittels Indikatoren gemessen werden.
   
 
 # Zeichnen des Pfaddiagramms in R
 - Class: cmd_question
   Output: Im Gegensatz zu AMOS oder anderen Softwarelösungen mit einer grafischen Benutzeroberfläche, muss das SEM in R mit Hilfe von Syntax spezifiziert werden. Hierbei bietet das Package lavaan einen einfachen und schnell zu erlernenden Modell-Code. Laden Sie mit dem library()-Befehl das Package lavaan ein.
-  CorrectAnswer: library(lavann)
+  CorrectAnswer: library(lavaan)
   AnswerTests: omnitest(correctExpr='library(lavaan)')
   Hint: Die korrekte Antwort lautet library(lavaan)
   
@@ -75,10 +75,10 @@
   Output: In einem ersten Schritt soll der Zusammenhang zwischen Stress am Arbeitsplatz "stresarb" und dem Psychologischen Wohlbefinden der Probanden "psywohl" modelliert werden. Geben Sie hierfür den lavaan-Syntax an. Vergessen Sie nicht einfache Anführungszeichen (') zu verwenden.
   CorrectAnswer: 'stresarb ~ psywohl'
   AnswerTests: omnitest(correctExpr = "'stresarb ~ psywohl'")
-  Hint: Die korrekte Antwort lautet ''stresarb ~ psywohl''
+  Hint: "Die korrekte Antwort lautet (mit Anführungszeichen): 'stresarb ~ psywohl' "
 
 - Class: mult_question
-  Output: Wie müsste der lavaaan-Syntax lauten, der angibt, dass die beiden Prädiktoren unseres Modells statistisch unabhängig sind?
+  Output: Wie müsste die lavaaan-Syntax lauten, die angibt, dass die beiden Prädiktoren unseres Modells statistisch unabhängig sind?
   AnswerChoices:  psywohl ~~ 0*deprvers; psywohl ~~ 1*deprvers; psywohl ~ 0*deprvers; psywohl =~ 0*deprvers
   CorrectAnswer:  psywohl ~~ 0*deprvers
   AnswerTests: omnitest(correctVal='psywohl ~~ 0*deprvers')
@@ -94,7 +94,7 @@
 # Zeichnen des Pfaddiagramms in R III
 
 - Class: cmd_question
-  Output: Nun soll das Modell mit der Funktion semPaths gezeichnet werden. Hierzu sollen die zusätzlichen Argumente "Model", "par", "Lisrel" an die Funktion übergeben werden.
+  Output: Nun soll das Modell mit der Funktion semPaths gezeichnet werden. Hierzu sollen die zusätzlichen Argumente "Model", "par", "Lisrel" (alle als String in Anführungszeichen in dieser Reihenfolge) an die Funktion übergeben werden.
   CorrectAnswer: semPaths(results.kausal.model, "Model", "par", "Lisrel")
   AnswerTests: any_of_exprs('semPaths(results.kausal.model, "Model", "par", "Lisrel")')
   Hint: Geben Sie folgenden Code ein  semPaths(results.kausal.model, "Model", "par", "Lisrel")
@@ -109,23 +109,22 @@
 
 - Class: mult_question
   Output: Ist der modellierte Zusammenhang zwischen "stresarb" (Stress am Arbeitsplatz) und  "psywohl" (Psychologisches Wohlbefinden) statistisch signifikant?
-  AnswerChoices:  Ja; Nein;
-  CorrectAnswer:  =~
+  AnswerChoices:  Ja; Nein
+  CorrectAnswer:  Ja
   AnswerTests: omnitest(correctVal='Ja')
-  Hint: Die korrekte Antwort lautet 'Ja'
+  Hint: "Die Antwort kann im Abschnitt 'Regressions' in der Spalte 'P(>|z|)' abgelesen werden. Ist der Signifikanzwert kleiner als 5%?"
 
 - Class: mult_question
   Output: Ist der modellierte Zusammenhang zwischen "stresarb" (Stress am Arbeitsplatz) und  "deprvers" (Depressive Verstimmung) statistisch signifikant?
-  AnswerChoices:  Ja; Nein;
-  CorrectAnswer:  =~
+  AnswerChoices:  Ja; Nein
+  CorrectAnswer:  Nein
   AnswerTests: omnitest(correctVal='Nein')
-  Hint: Die korrekte Antwort lautet 'Nein'
+  Hint: "Die Antwort kann im Abschnitt 'Regressions' in der Spalte 'P(>|z|)' abgelesen werden. Ist der Signifikanzwert kleiner als 5%?"
 
 - Class: cmd_question
   Output: Überprüfen Sie die allgemeinen Aussagen des Strukturgleichungsmodells mit einer multiplen linearen Regression! Verwenden Sie dafür den Befehl summary(lm()) mit dem Parameter data = daten. Zur Erinnerung - stresarb ist die abhängige Variable, psywohl und deprvers sind die Prädiktorvariablen.
   CorrectAnswer: summary(lm(stresarb ~ psywohl +  deprvers, data = daten)) 
   AnswerTests: any_of_exprs('summary(lm(stresarb ~ psywohl +  deprvers, data = daten))', 'summary(lm(stresarb ~ deprvers + psywohl, data = daten))')
-  
   Hint: Die richtige Antwort lautet summary(lm(stresarb ~ psywohl +  deprvers, data = daten))
 
 # Zusammenfassung des Kapitels:
