@@ -39,9 +39,9 @@
   Output: Neben den multidimensionalen Häufigkeitstabellen für alle vier Variablen, wie wir sie hier verwendet haben, kann man mit dem table() Befehl natürlich auch Kontingenztabellen für zwei Variablen erstellen.
 
 - Class: cmd_question
-  Output: Erstellen Sie eine Kontingenztabelle für den Zusammenhang zwischen 'Sozialphobie bis 14 Jahre' (sozipb14) und 'Agoraphobie ab 18 Jahre' (agorpa18).
+  Output: Erstellen Sie eine Kontingenztabelle für den Zusammenhang zwischen 'Sozialphobie bis 14 Jahre' (sozpb14) und 'Agoraphobie ab 18 Jahre' (agorpa18).
   CorrectAnswer:  table(daten$sozpb14, daten$agorpa18)
-  AnswerTests: omnitest(correctVal='table(daten$sozpb14, daten$agorpa18)')
+  AnswerTests: any_of_exprs('table(daten$sozpb14, daten$agorpa18)', 'table(daten$agorpa18, daten$sozpb14)')
   Hint: "Übergeben Sie dem Befehl table() die beiden Variablen als Argumente: table(daten$sozpb14, daten$agorpa18)."
 
 - Class: mult_question
