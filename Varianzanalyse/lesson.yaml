@@ -93,10 +93,10 @@
 # Inferenzstatistik  
 - Class: mult_question
   Output: Können Sie hinsichtlich der Variable "valpos" einen signifikanten Unterschied zwischen Probanden mit und ohne PTSD feststellen?
-  AnswerChoices:  Ja, der F-Wert ist besonders klein; Ja, der p-Wert ist kleiner als 0.05; Nein, der p-Wert ist grösser als 0.05; Nein, der F-Wert ist besonders hoch;
-  CorrectAnswer:  Nein, der p-Wert ist grösser als 0.05
-  AnswerTests: omnitest(correctVal='Nein, der p-Wert ist grösser als 0.05')
-  Hint: Der Unterschied ist nicht signifikant, da der p-Wert grösser als 0.05 ist.
+  AnswerChoices:  Ja, der F-Wert ist besonders klein; Ja, der p-Wert ist kleiner als 0.05; Nein, der p-Wert ist groesser als 0.05; Nein, der F-Wert ist besonders hoch;
+  CorrectAnswer:  Nein, der p-Wert ist groesser als 0.05
+  AnswerTests: omnitest(correctVal='Nein, der p-Wert ist groesser als 0.05')
+  Hint: Der Unterschied ist nicht signifikant, da der p-Wert groesser als 0.05 ist.
 
 # Fehlende Werte
 - Class: text
