@@ -58,7 +58,7 @@
   Hint: Übergeben Sie die beiden Variablen daten$sozpb14 und daten$agorpa18 an den Befehl chisq.test().
 
 - Class: mult_question
-  Output: Gibt es nach diesen Daten einen übeerzufälligen Zusammenhang zwischen dem Auftreten einer Sozialphobie bis 14 Jahre und einer Agoraphobie ab 18 Jahre?
+  Output: Gibt es nach diesen Daten einen überzufälligen Zusammenhang zwischen dem Auftreten einer Sozialphobie bis 14 Jahre und einer Agoraphobie ab 18 Jahre?
   AnswerChoices:  Ja; Nein
   CorrectAnswer:  Ja
   AnswerTests: omnitest(correctVal='Ja')
