@@ -18,7 +18,7 @@
 - Class: cmd_question
   Output: Testen Sie die Korrelation zwischen "alter" und "einkommen". Benutzen Sie dazu den cor.test() Befehl.
   CorrectAnswer: cor.test(alter, einkommen)
-  AnswerTests: omnitest(correctExpr='cor.test(alter, einkommen)', correctVal= cor.test(alter, einkommen))
+  AnswerTests: omnitest(correctExpr='cor.test(alter, einkommen)')
   Hint:  Die korrekte Antwort lautet "cor.test(alter, einkommen)"
 
 # Korrelation ploten
